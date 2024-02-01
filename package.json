@@ -10,8 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource/cabin": "^5.0.16",
     "astro": "^4.3.0",
-    "postcss": "^8.4.33",
-    "postcss-preset-env": "^9.3.0"
+    "sass": "^1.70.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.4",
+    "prettier-plugin-astro": "^0.13.0"
   }
 }
