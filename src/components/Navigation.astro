@@ -32,6 +32,7 @@ const { data } = await response.json();
 const { menuItems } = data.mainMenu.mainMenu;
 ---
 
+<h1>The current URL is: {Astro.url}</h1>
 <nav>
   <ul>
     {
