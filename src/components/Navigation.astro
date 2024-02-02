@@ -1,4 +1,5 @@
 ---
+import { replaceUrls } from "../utils/replaceUrls";
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
   headers: {
@@ -14,8 +15,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                         label
                         destination {
                             ... on Page {
-                                id
-                                uri
+    
+                                link
                             }
                         }
                     }
@@ -29,15 +30,19 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 
 const { data } = await response.json();
 const { menuItems } = data.mainMenu.mainMenu;
+console.log("Astro", Astro.url);
 ---
 
 <nav>
   <ul>
     {
       menuItems.map(({ menuItem }) => {
+        const href = replaceUrls(menuItem.destination.link, Astro.url.origin);
+        console.log("href", href);
+
         return (
           <li>
-            <a href={menuItem.destination.uri}>{menuItem.label}</a>
+            <a href={href}>{menuItem.label}</a>
           </li>
         );
       })
