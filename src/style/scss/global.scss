@@ -78,7 +78,7 @@ p {
 a {
   @include font-sizer(1.8, 2, 76.8, 120);
   text-decoration: none;
-  color: var(--color-primary);
+  color: $color-primary;
   font-weight: normal;
   transition: all 0.3s ease;
 }

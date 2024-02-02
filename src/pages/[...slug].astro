@@ -1,0 +1,81 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+          query allPages {
+            pages(first: 9999999) {
+              nodes {
+                uri
+              }
+            }
+          }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  return data.pages.nodes.map((page) => {
+    return {
+      params: { slug: page.uri === "/" ? undefined : page.uri },
+      props: { trevor: "rounce" },
+    };
+  });
+}
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query PageQuery($uri: String!) {
+      nodeByUri(uri: $uri) {
+        ... on Page {
+          id
+          slug
+          title
+        }
+      }
+    }
+  `,
+    variables: {
+      uri: Astro.params["slug"] || "/",
+    },
+  }),
+});
+
+const { data } = await response.json();
+
+// console.log("response", data);
+// console.log("Astro.params", Astro.params);
+
+// console.log("Trevor", Astro.props);
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <div class="wrapper">
+      <h1>Rhythm Nation Blog</h1>
+    </div>
+  </main>
+</Layout>
+
+<style lang="scss">
+  @import "../style/scss/helpers.scss";
+
+  h1 {
+  }
+
+  .wrapper {
+    @include med-wrapper();
+  }
+</style>

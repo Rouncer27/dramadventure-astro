@@ -1,0 +1,54 @@
+---
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query MainMenuQuery {
+        mainMenu {
+            mainMenu {
+                menuItems {
+                    menuItem {
+                        label
+                        destination {
+                            ... on Page {
+                                id
+                                uri
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+  `,
+  }),
+});
+
+const { data } = await response.json();
+const { menuItems } = data.mainMenu.mainMenu;
+---
+
+<nav>
+  <ul>
+    {
+      menuItems.map(({ menuItem }) => {
+        return (
+          <li>
+            <a href={menuItem.destination.uri}>{menuItem.label}</a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
+
+<style lang="scss">
+  li {
+    a {
+      color: red;
+    }
+  }
+</style>
