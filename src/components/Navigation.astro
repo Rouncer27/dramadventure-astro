@@ -30,7 +30,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 
 const { data } = await response.json();
 const { menuItems } = data.mainMenu.mainMenu;
-console.log("Astro", Astro.url);
 ---
 
 <nav>
@@ -38,6 +37,7 @@ console.log("Astro", Astro.url);
     {
       menuItems.map(({ menuItem }) => {
         const href = replaceUrls(menuItem.destination.link, Astro.url.origin);
+        console.log("Astro", Astro);
         console.log("href", href);
 
         return (
