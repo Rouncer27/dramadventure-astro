@@ -10,7 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource/cabin": "^5.0.16",
+    "@fontsource/montserrat": "^5.0.16",
+    "@fontsource/prata": "^5.0.18",
     "astro": "^4.3.0",
     "sass": "^1.70.0"
   },

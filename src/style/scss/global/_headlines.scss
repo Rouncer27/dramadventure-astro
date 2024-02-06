@@ -11,7 +11,7 @@
 .hl-one {
   @include utils.font-sizer(4, 6.5, 76.8, 150, 4);
   @extend .headline-all;
-  font-family: abstracts.$primaryFont;
+  font-family: abstracts.$secondaryFont;
   line-height: 1.08;
   color: abstracts.$blackColor;
 }
@@ -19,7 +19,7 @@
 .hl-two {
   @include utils.font-sizer(4, 5.2, 76.8, 150, 4);
   @extend .headline-all;
-  font-family: abstracts.$primaryFont;
+  font-family: abstracts.$secondaryFont;
   line-height: 1.23;
   color: abstracts.$blackColor;
 }
@@ -27,7 +27,7 @@
 .hl-three {
   @include utils.font-sizer(2.5, 3.5, 76.8, 150, 2.5);
   @extend .headline-all;
-  font-family: abstracts.$primaryFont;
+  font-family: abstracts.$secondaryFont;
   line-height: 1.27;
   color: abstracts.$blackColor;
 }
