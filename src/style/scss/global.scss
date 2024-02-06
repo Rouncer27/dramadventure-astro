@@ -1,7 +1,77 @@
-@import "./reset.scss";
-@import "./variables.scss";
-@import "./helpers.scss";
-@import "@fontsource/cabin";
+@use "./abstracts" as var;
+@use "@fontsource/cabin";
+@use "./utils";
+
+// Lets do the reset first. //
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Set the sizing of an element to include it's border */
+}
+
+* {
+  margin: 0; /* Set the default margin to 0 */
+  padding: 0; /* Set the default padding to 0 */
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none; /* Turn off numbered and unordered list decoration */
+}
+
+html:focus-within {
+  scroll-behavior: smooth; /* Make the scrolling inside of any scrollable element smooth */
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto; /* Makes link undelines look better */
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+  max-width: 100%; /* Makes it responsive */
+  height: auto; /* Makes it responsive */
+  vertical-align: middle; /* Makes text next to inline images look better */
+  font-style: italic; /* If the images don't load it makes the alt decription look better */
+  background-repeat: no-repeat;
+  /* The background repeat and size are there if you want to load a picture first like a backroung image that is worse quality while the better quality image loads */
+  background-size: cover;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit; /* Makes these elements inherit fonts */
+}
+
+/* Turns off animation for people who don't want to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition: none;
+  }
+}
+
+body,
+html {
+  height: 100%; /* Makes the body element full screen */
+  scroll-behavior: smooth; /* Makes normal scrolling smooth */
+}
+
+/* Okay thats it for the css reset styles.  */
 
 *,
 *::before,
@@ -22,7 +92,7 @@ body {
   padding: 0;
   margin: 0;
   font-size: 1.6rem;
-  font-family: var(--font-primary);
+  font-family: var.$primaryFont;
   font-weight: normal;
   letter-spacing: 0.1rem;
   line-height: 1.5;
@@ -38,57 +108,57 @@ h6 {
   margin: 0;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  font-family: var(--font-primary);
+  font-family: var.$primaryFont;
   font-size: 1.8rem;
   font-weight: normal;
-  line-height: var(--font-base-line-height);
+  line-height: var.$baseLineHeight;
 }
 
 h1 {
-  @include font-sizer(3.2, 5.6, 76.8, 120);
+  @include utils.font-sizer(3.2, 5.6, 76.8, 120);
 }
 
 h2 {
-  @include font-sizer(2.6, 4.6, 76.8, 120);
+  @include utils.font-sizer(2.6, 4.6, 76.8, 120);
 }
 
 h3 {
-  @include font-sizer(2.2, 3.4, 76.8, 120);
+  @include utils.font-sizer(2.2, 3.4, 76.8, 120);
 }
 
 h4 {
-  @include font-sizer(2, 2.8, 76.8, 120);
+  @include utils.font-sizer(2, 2.8, 76.8, 120);
 }
 
 h5 {
-  @include font-sizer(2, 2.4, 76.8, 120);
+  @include utils.font-sizer(2, 2.4, 76.8, 120);
 }
 
 h6 {
-  @include font-sizer(1.8, 2.2, 76.8, 120);
+  @include utils.font-sizer(1.8, 2.2, 76.8, 120);
 }
 
 p {
-  @include font-sizer(1.8, 2, 76.8, 120);
+  @include utils.font-sizer(1.8, 2, 76.8, 120);
   margin: 0;
   margin-bottom: 1.5em;
   line-height: 1.4;
 }
 
 a {
-  @include font-sizer(1.8, 2, 76.8, 120);
+  @include utils.font-sizer(1.8, 2, 76.8, 120);
   text-decoration: none;
-  color: $color-primary;
+  color: var.$primaryColor;
   font-weight: normal;
   transition: all 0.3s ease;
 }
 
 a:hover {
-  color: var(--color-secondary);
+  color: var.$secondaryColor;
 }
 
 a:focus {
-  outline: 0.4rem solid var(--color-tertiary);
+  outline: 0.4rem solid var.$tertiaryColor;
   transition: outline-width 0.35s ease-in-out;
 }
 

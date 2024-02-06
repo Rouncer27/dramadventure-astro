@@ -1,14 +1,60 @@
 ---
+import { Image } from "astro:assets";
 import Navigation from "../components/Navigation.astro";
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+      query MainLogoQuery {
+          acfOptionsSiteWideSettings {
+          siteWideSettings {
+            mainLogo {
+              uri
+              sourceUrl(size: _2048X2048)
+          }
+        }
+      }
+    }
+  `,
+  }),
+});
+
+const { data } = await response.json();
+
+console.log("HEADER data", data);
 ---
 
 <header>
-  <div>
+  <div class="wrapper">
+    <div class="main-logo">
+      <Image
+        src={data.acfOptionsSiteWideSettings.siteWideSettings.mainLogo
+          .sourceUrl}
+        alt=""
+        width={400}
+        height={400}
+      />
+    </div>
     <Navigation />
   </div>
 </header>
 
 <style lang="scss">
+  @use "../style/scss/utils";
+
+  .wrapper {
+    @include utils.med-wrapper;
+    width: 100%;
+  }
+
+  .main-logo {
+    width: 10%;
+    max-width: 10rem;
+  }
+
   p {
     color: green;
   }
