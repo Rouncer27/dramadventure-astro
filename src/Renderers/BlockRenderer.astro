@@ -1,6 +1,6 @@
 ---
 import Hero from "../components/Hero.astro";
-import ReviewSlider from "../components/ReviewSlider.astro";
+import ReviewSlider from "../components/ReviewSlider";
 const { blocks } = Astro.props;
 ---
 
@@ -11,7 +11,7 @@ const { blocks } = Astro.props;
         return <Hero data={block} />;
 
       case "Page_Pagecomponents_Components_ReviewSlider":
-        return <ReviewSlider data={block} />;
+        return <ReviewSlider client:load data={block} />;
       default:
         return (
           <div>
