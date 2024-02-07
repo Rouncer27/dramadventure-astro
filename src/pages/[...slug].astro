@@ -54,11 +54,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const { data } = await response.json();
-
-// console.log("response", data);
-// console.log("Astro.params", Astro.params);
-
-// console.log("Trevor", Astro.props);
 ---
 
 <Layout title="Welcome to Astro.">
@@ -70,7 +65,7 @@ const { data } = await response.json();
 </Layout>
 
 <style lang="scss">
-  @use "../style/scss/utils";
+  @use "../style/utils";
 
   h1 {
   }

@@ -1,5 +1,7 @@
 ---
 import { replaceUrls } from "../utils/replaceUrls";
+import "../style/components/navigation.scss";
+
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
   headers: {
@@ -46,20 +48,3 @@ const { menuItems } = data.mainMenu.mainMenu;
     }
   </ul>
 </nav>
-
-<style lang="scss">
-  nav {
-    width: 90%;
-  }
-
-  ul {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  li {
-    a {
-      color: red;
-    }
-  }
-</style>

@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import Navigation from "../components/Navigation.astro";
+import "../style/layouts/header.scss";
+
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
   headers: {
@@ -28,7 +30,7 @@ console.log("HEADER data", data);
 ---
 
 <header>
-  <div class="wrapper">
+  <div class="wrap-med">
     <div class="main-logo">
       <Image
         src={data.acfOptionsSiteWideSettings.siteWideSettings.mainLogo
@@ -65,16 +67,3 @@ console.log("HEADER data", data);
     </div>
   </div>
 </header>
-<style lang="scss">
-  @use "../style/scss/utils";
-
-  .wrapper {
-    @include utils.med-wrapper;
-    width: 100%;
-  }
-
-  .main-logo {
-    width: 10%;
-    max-width: 10rem;
-  }
-</style>
