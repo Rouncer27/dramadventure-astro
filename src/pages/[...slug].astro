@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Layout from "../layouts/Layout.astro";
+import BlockRenderer from "../Renderers/BlockRenderer.astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -43,6 +44,50 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
           id
           slug
           title
+          pageComponents {
+            components {
+              ... on Page_Pagecomponents_Components_Hero {
+                fieldGroupName
+                heroContent {
+                  boxColour
+                  fieldGroupName
+                  title
+                  button {
+                    buttonText
+                    buttonType
+                    buttonUrl
+                    pageLink {
+                      ... on Page {
+                        id
+                        link
+                      }
+                    }
+                  }
+                }
+                heroImage {
+                  sourceUrl
+                }
+              }
+
+              ... on Page_Pagecomponents_Components_SearchWhiskies {
+                displayWhiskiesSearch
+                fieldGroupName
+              }
+
+              ... on Page_Pagecomponents_Components_WysiwygContent {
+                fieldGroupName
+                mainContent
+              }
+
+              ... on Page_Pagecomponents_Components_ReviewSlider {
+                displayReviewSlider
+                fieldGroupName
+              }
+
+
+
+            }
+          }
         }
       }
     }
@@ -54,14 +99,13 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const { data } = await response.json();
+const blocks = data.nodeByUri.pageComponents.components;
 
-console.log("data", data);
+console.log("blocks", blocks);
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
-    <div class="wrap-med">
-      <h1>Dram Adventure - {data.nodeByUri.title}</h1>
-    </div>
+    <BlockRenderer blocks={blocks} />
   </main>
 </Layout>

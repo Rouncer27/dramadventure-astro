@@ -1,0 +1,19 @@
+---
+import Hero from "../components/Hero.astro";
+const { blocks } = Astro.props;
+---
+
+{
+  blocks.map((block) => {
+    switch (block.fieldGroupName) {
+      case "Page_Pagecomponents_Components_Hero":
+        return <Hero data={block} />;
+      default:
+        return (
+          <div>
+            <p>Sorry cannot find this component -- {block.fieldGroupName}</p>
+          </div>
+        );
+    }
+  })
+}
