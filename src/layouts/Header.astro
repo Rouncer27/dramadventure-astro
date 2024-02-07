@@ -25,7 +25,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const { data } = await response.json();
-console.log("Astro.url.origin,", Astro.url);
 ---
 
 <header>

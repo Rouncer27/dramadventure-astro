@@ -54,12 +54,14 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const { data } = await response.json();
+
+console.log("data", data);
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
     <div class="wrap-med">
-      <h1>Dram Adventure</h1>
+      <h1>Dram Adventure - {data.nodeByUri.title}</h1>
     </div>
   </main>
 </Layout>
