@@ -1,5 +1,6 @@
 ---
 import Hero from "../components/Hero.astro";
+import ReviewSlider from "../components/ReviewSlider.astro";
 const { blocks } = Astro.props;
 ---
 
@@ -8,6 +9,9 @@ const { blocks } = Astro.props;
     switch (block.fieldGroupName) {
       case "Page_Pagecomponents_Components_Hero":
         return <Hero data={block} />;
+
+      case "Page_Pagecomponents_Components_ReviewSlider":
+        return <ReviewSlider data={block} />;
       default:
         return (
           <div>

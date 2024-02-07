@@ -1,11 +1,31 @@
 ---
+import { Image } from "astro:assets";
+import "../style/components/hero.scss";
+
 const { data } = Astro.props;
 ---
 
-<div>
-  <div class="">
-    <div>
-      <h1>{data.heroContent.title}</h1>
+<div class="hero-component">
+  <div class="hero-content">
+    <div class="hero-content-title">
+      <h1 class="hl-three hl-white">{data.heroContent.title}</h1>
     </div>
+    <div class="hero-content-btn">
+      <a
+        class="btn btn-two"
+        target="_blank"
+        rel="noopener"
+        href={data.heroContent.button.buttonUrl}
+        >{data.heroContent.button.buttonText}</a
+      >
+    </div>
+  </div>
+  <div class="hero-image">
+    <Image
+      src={data.heroImage.sourceUrl}
+      alt="The Repo Room"
+      width={2500}
+      height={2500}
+    />
   </div>
 </div>
