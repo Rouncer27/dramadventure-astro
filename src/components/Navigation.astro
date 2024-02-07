@@ -34,14 +34,16 @@ const { data } = await response.json();
 const { menuItems } = data.mainMenu.mainMenu;
 ---
 
-<nav>
+<nav class="main-navigation">
   <ul>
     {
       menuItems.map(({ menuItem }) => {
         const href = replaceUrls(menuItem.destination.link, Astro.url.origin);
         return (
           <li>
-            <a href={href}>{menuItem.label}</a>
+            <a class="p-two" href={href}>
+              {menuItem.label}
+            </a>
           </li>
         );
       })

@@ -32,13 +32,15 @@ console.log("HEADER data", data);
 <header>
   <div class="wrap-med">
     <div class="main-logo">
-      <Image
-        src={data.acfOptionsSiteWideSettings.siteWideSettings.mainLogo
-          .sourceUrl}
-        alt=""
-        width={400}
-        height={400}
-      />
+      <div class="main-logo__wrap">
+        <Image
+          src={data.acfOptionsSiteWideSettings.siteWideSettings.mainLogo
+            .sourceUrl}
+          alt=""
+          width={400}
+          height={400}
+        />
+      </div>
     </div>
     <Navigation />
     <div class="typo">

@@ -1,4 +1,7 @@
 .main-logo {
-  width: 10%;
-  max-width: 10rem;
+  width: 25%;
+
+  &__wrap {
+    max-width: 10rem;
+  }
 }

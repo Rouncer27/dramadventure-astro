@@ -1,14 +1,28 @@
-nav {
-  width: 90%;
-}
+@use "../abstracts/colors";
 
-ul {
-  display: flex;
-  justify-content: flex-end;
-}
+.main-navigation {
+  width: 75%;
+  align-self: center;
+  padding: 3rem;
+  background-color: colors.$creamColor;
 
-li {
-  a {
-    color: red;
+  ul {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  li {
+    margin: 0 0.5rem;
+
+    a {
+      padding: 0.5rem 2rem;
+      text-transform: uppercase;
+      color: #333333;
+      font-weight: 600;
+
+      &:hover {
+        color: colors.$accentColor;
+      }
+    }
   }
 }
