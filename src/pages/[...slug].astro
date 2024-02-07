@@ -58,19 +58,8 @@ const { data } = await response.json();
 
 <Layout title="Welcome to Astro.">
   <main>
-    <div class="wrapper">
+    <div class="wrap-med">
       <h1>Dram Adventure</h1>
     </div>
   </main>
 </Layout>
-
-<style lang="scss">
-  @use "../style/utils";
-
-  h1 {
-  }
-
-  .wrapper {
-    @include utils.med-wrapper();
-  }
-</style>

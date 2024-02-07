@@ -24,5 +24,11 @@
         color: colors.$accentColor;
       }
     }
+
+    &.cta {
+      a {
+        color: colors.$whiteColor;
+      }
+    }
   }
 }

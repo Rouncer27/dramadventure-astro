@@ -25,47 +25,24 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const { data } = await response.json();
-
-console.log("HEADER data", data);
+console.log("Astro.url.origin,", Astro.url);
 ---
 
 <header>
   <div class="wrap-med">
     <div class="main-logo">
       <div class="main-logo__wrap">
-        <Image
-          src={data.acfOptionsSiteWideSettings.siteWideSettings.mainLogo
-            .sourceUrl}
-          alt=""
-          width={400}
-          height={400}
-        />
+        <a href={Astro.url.origin}>
+          <Image
+            src={data.acfOptionsSiteWideSettings.siteWideSettings.mainLogo
+              .sourceUrl}
+            alt=""
+            width={400}
+            height={400}
+          />
+        </a>
       </div>
     </div>
     <Navigation />
-    <div class="typo">
-      <h2 class="hl-one">This is a headline style one</h2>
-      <h2 class="hl-one hl-white">This is a headline style one</h2>
-      <h2 class="hl-two">This is a headline style two</h2>
-      <h2 class="hl-two hl-white">This is a headline style two</h2>
-      <h2 class="hl-three">This is a headline style three</h2>
-      <h2 class="hl-three hl-white">This is a headline style three</h2>
-      <h2 class="hl-four">This is a headline style Four</h2>
-      <h2 class="hl-four hl-white">This is a headline style Four</h2>
-
-      <p class="p-one">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
-        Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-        Suspendisse urna nibh viverra non semper suscipit posuere a pede
-      </p>
-
-      <p class="p-two">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
-        Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-        Suspendisse urna nibh viverra non semper suscipit posuere a pede
-      </p>
-      <a class="btn btn-one" href="#">This is a button</a>
-      <a class="btn btn-two" href="#">This is a button</a>
-    </div>
   </div>
 </header>
