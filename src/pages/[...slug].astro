@@ -83,13 +83,22 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 displayReviewSlider
                 fieldGroupName
               }
-
-
-
             }
           }
         }
       }
+
+      spritsReviews {
+        nodes {
+          title
+          reviewsContent {
+            featuredImage {
+              sourceUrl
+            }
+          }
+        }
+      }
+
     }
   `,
     variables: {
@@ -100,12 +109,13 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 
 const { data } = await response.json();
 const blocks = data.nodeByUri.pageComponents.components;
-
+const reviews = data.spritsReviews.nodes;
+console.log("reviews", reviews);
 console.log("blocks", blocks);
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
-    <BlockRenderer blocks={blocks} />
+    <BlockRenderer blocks={blocks} reviews={reviews} />
   </main>
 </Layout>
