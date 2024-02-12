@@ -51,28 +51,44 @@ if (callToActionButton) {
 ---
 
 <nav class="main-navigation">
-  <ul>
-    {
-      menuItems.map(({ menuItem }) => {
-        const href = replaceUrls(menuItem.destination.link, Astro.url.origin);
-        return (
-          <li>
-            <a class="p-two" href={href}>
-              {menuItem.label}
+  <div class="navigation-drawer">
+    <ul>
+      {
+        menuItems.map(({ menuItem }) => {
+          const href = replaceUrls(menuItem.destination.link, Astro.url.origin);
+          return (
+            <li>
+              <a class="p-two" href={href}>
+                {menuItem.label}
+              </a>
+            </li>
+          );
+        })
+      }
+
+      {
+        callToActionButton && (
+          <li class="cta">
+            <a class="p-two btn-one" href={callToActionButton.href}>
+              {callToActionButton.label}
             </a>
           </li>
-        );
-      })
-    }
-
-    {
-      callToActionButton && (
-        <li class="cta">
-          <a class="p-two btn-one" href={callToActionButton.href}>
-            {callToActionButton.label}
-          </a>
-        </li>
-      )
-    }
-  </ul>
+        )
+      }
+    </ul>
+  </div>
+  <button class="menu-toggle" type="button">Menu</button>
 </nav>
+
+<script>
+  const mainNav = document.querySelector(".main-navigation");
+  const menuButton = document.querySelector(".menu-toggle");
+
+  menuButton.addEventListener("click", () => {
+    if (mainNav.classList.contains("mobile-active")) {
+      mainNav.classList.remove("mobile-active");
+    } else {
+      mainNav.classList.add("mobile-active");
+    }
+  });
+</script>

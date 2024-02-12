@@ -1,18 +1,74 @@
 @use "../abstracts/colors";
 
 .main-navigation {
-  width: 75%;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
   align-self: flex-start;
-  padding: 3rem;
-  background-color: colors.$creamColor;
+  z-index: 999999;
+
+  @media (min-width: 768px) {
+    position: relative;
+    width: 75%;
+    height: auto;
+  }
+
+  button {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 5rem;
+    height: 5rem;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .navigation-drawer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 3rem;
+    height: 100%;
+    background-color: colors.$creamColor;
+    transition: all 0.2s ease-in;
+    transform: translateX(100%);
+
+    @media (min-width: 768px) {
+      transform: translateX(0%);
+    }
+  }
+
+  &.mobile-active {
+    .navigation-drawer {
+      transform: translateX(0%);
+
+      @media (min-width: 768px) {
+        transform: translateX(0%);
+      }
+    }
+  }
 
   ul {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   li {
     margin: 0 0.5rem;
+
+    @media (min-width: 768px) {
+    }
 
     a {
       padding: 0.5rem 2rem;
