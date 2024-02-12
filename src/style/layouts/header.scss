@@ -1,7 +1,42 @@
-.main-logo {
-  width: 25%;
+@use "../abstracts";
 
-  &__wrap {
-    max-width: 10rem;
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  .wrap-med {
+    margin-top: 0;
+    padding-top: 1rem;
+    padding-right: 0;
+  }
+
+  .head-wrapper {
+    display: flex;
+    max-width: 100%;
+  }
+
+  .main-logo {
+    position: relative;
+    width: 25%;
+
+    &__graphic {
+      position: absolute;
+      top: -12rem;
+      left: -12rem;
+      width: 25rem;
+      height: 25rem;
+      border-radius: 50%;
+      background-color: abstracts.$whiteColor;
+      z-index: -1;
+    }
+
+    &__wrap {
+      position: relative;
+      max-width: 10rem;
+      z-index: 10;
+    }
   }
 }
