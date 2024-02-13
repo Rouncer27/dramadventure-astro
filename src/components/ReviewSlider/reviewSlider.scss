@@ -1,4 +1,5 @@
-@use "../abstracts";
+@use "../../style/abstracts";
+
 .slide-section {
   background-color: abstracts.$greyBrownColor;
   overflow: hidden;

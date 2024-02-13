@@ -3,7 +3,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "../../style/components/reviewSlider.scss";
+import "./reviewSlider.scss";
 
 const ReviewSlider = (props) => {
   console.log("PROPS", props);

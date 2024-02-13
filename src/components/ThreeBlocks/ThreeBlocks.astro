@@ -2,10 +2,8 @@
 import { Image } from "astro:assets";
 import "./threeBlocks.scss";
 import { replaceUrls } from "../../utils/replaceUrls";
+
 const { data } = Astro.props;
-
-console.log("threeBlocks", data);
-
 const hrefOne = data?.content?.pageLinkOne?.link
   ? replaceUrls(data.content.pageLinkOne.link, Astro.url.origin)
   : null;
