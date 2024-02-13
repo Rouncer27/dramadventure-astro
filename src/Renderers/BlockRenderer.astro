@@ -2,6 +2,7 @@
 import Hero from "../components/Hero/Hero.astro";
 import ReviewSlider from "../components/ReviewSlider/ReviewSlider.jsx";
 import ThreeBlocks from "../components/ThreeBlocks/ThreeBlocks.astro";
+import LatestPosts from "../components/LatestPosts/LatestPosts.astro";
 const { blocks, reviews } = Astro.props;
 ---
 
@@ -16,6 +17,10 @@ const { blocks, reviews } = Astro.props;
 
       case "Page_Pagecomponents_Components_ThreeBlocks":
         return <ThreeBlocks data={block} />;
+
+      case "Page_Pagecomponents_Components_DisplayLatestPosts":
+        return <LatestPosts data={block} />;
+
       default:
         return (
           <div>

@@ -1,0 +1,24 @@
+---
+import { Image } from "astro:assets";
+import "./post.scss";
+const { post } = Astro.props;
+---
+
+<div class="single-post-display">
+  <div class="single-post-display-image">
+    <Image
+      src={post.postsComponents.featuredImage.sourceUrl}
+      alt={post.title}
+      width="750"
+      height="1500"
+    />
+  </div>
+  <div class="single-post-display-text">
+    <div class="single-post-display-date">
+      <p class="p-one">{post.date}</p>
+    </div>
+    <div class="single-post-display-title">
+      <h3 class="hl-four hl-white">{post.title}</h3>
+    </div>
+  </div>
+</div>

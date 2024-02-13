@@ -136,6 +136,11 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                   }
                 }
               }
+              ... on Page_Pagecomponents_Components_DisplayLatestPosts {
+                displayLatestPosts
+                fieldGroupName
+                title
+              }
             }
           }
         }
@@ -163,7 +168,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const { data } = await response.json();
 const blocks = data.nodeByUri.pageComponents.components;
 const reviews = data.spritsReviews.nodes;
-console.log("blocks", blocks);
 ---
 
 <Layout title="Welcome to Astro.">

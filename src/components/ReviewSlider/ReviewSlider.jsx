@@ -6,7 +6,6 @@ import "swiper/css/navigation";
 import "./reviewSlider.scss";
 
 const ReviewSlider = (props) => {
-  console.log("PROPS", props);
   return (
     <div className="slide-section">
       <div className="slide-wrap">

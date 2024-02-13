@@ -1,0 +1,55 @@
+---
+import "./latestPosts.scss";
+import Post from "./Post.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        query postsQuery {
+            posts(first: 3) {
+                nodes {
+                    title
+                    date
+                    postsComponents {
+                        featuredImage {
+                        sourceUrl
+                        }
+                    }
+                }
+            }
+        }
+    `,
+  }),
+});
+
+const {
+  data: {
+    posts: { nodes: posts },
+  },
+} = await response.json();
+
+const { data } = Astro.props;
+
+console.log("posts", posts);
+---
+
+{
+  data.displayLatestPosts ? (
+    <div class="latest-posts">
+      <div class="wrap-med">
+        <div class="latest-posts-title">
+          <h2 class="hl-three hl-white">{data.title}</h2>
+        </div>
+        <div class="latest-posts-display">
+          {posts.map((post) => {
+            return <Post post={post} />;
+          })}
+        </div>
+      </div>
+    </div>
+  ) : null
+}

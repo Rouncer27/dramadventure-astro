@@ -1,0 +1,17 @@
+@use "../../style/abstracts";
+
+.latest-posts {
+  background-color: abstracts.$primaryColor;
+
+  &-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  &-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+}
