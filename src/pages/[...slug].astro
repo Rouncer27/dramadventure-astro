@@ -83,6 +83,59 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 displayReviewSlider
                 fieldGroupName
               }
+
+
+              ... on Page_Pagecomponents_Components_ThreeBlocks {
+                fieldGroupName
+                imageLeft {
+                  sourceUrl
+                }
+                imageRight {
+                  sourceUrl
+                }
+                content {
+                  bigContent
+                  logoOrIcon {
+                    sourceUrl
+                  }
+                  pageLinkOne {
+                    ... on Page {
+                      title
+                      link
+                    }
+                    ... on Post {
+                      title
+                      link
+                    }
+                    ... on SpritReview {
+                      title
+                      link
+                    }
+                    ... on Whiskey {
+                      title
+                      link
+                    }
+                  }
+                  pageLinkTwo {
+                    ... on Page {
+                      title
+                      link
+                    }
+                    ... on Post {
+                      title
+                      link
+                    }
+                    ... on SpritReview {
+                      title
+                      link
+                    }
+                    ... on Whiskey {
+                      title
+                      link
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -110,7 +163,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const { data } = await response.json();
 const blocks = data.nodeByUri.pageComponents.components;
 const reviews = data.spritsReviews.nodes;
-console.log("reviews", reviews);
 console.log("blocks", blocks);
 ---
 
