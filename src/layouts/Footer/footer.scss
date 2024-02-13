@@ -4,8 +4,17 @@
   padding: 2.5rem 0;
   background-color: abstracts.$creamColor;
 
+  &-wrapper {
+    align-items: center;
+  }
+
   &-logo {
     width: calc(15%);
+
+    &-wrap {
+      max-width: 5.75rem;
+      margin: 0 auto;
+    }
   }
   nav {
     width: calc(70%);
@@ -29,6 +38,97 @@
   }
 
   &-social {
+    display: flex;
+    justify-content: center;
     width: calc(15%);
+
+    ul {
+      li {
+        display: inline-block;
+        margin-right: 0.25rem;
+        margin-left: 0.25rem;
+
+        a {
+          display: flex;
+          align-items: center;
+          position: relative;
+          width: 4rem;
+          height: 4rem;
+          padding: 1rem;
+          background-color: abstracts.$secondaryColor;
+          border-radius: 50%;
+
+          @media (min-width: 768px) {
+            width: 2rem;
+            height: 2rem;
+          }
+          @media (min-width: 1025px) {
+            width: 4rem;
+            height: 4rem;
+            padding: 0.7rem;
+          }
+
+          &:focus {
+            outline: 0.4rem solid abstracts.$shadowColor;
+            transition: outline-width 0.35s ease-in-out;
+          }
+
+          span {
+            display: none;
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+
+          svg {
+            display: block;
+            width: 4rem;
+            height: 4rem;
+            margin: auto;
+            transition: all 0.3s ease-out;
+            fill: abstracts.$creamColor;
+            stop,
+            path.path-outside {
+              transition: all 0.3s ease-out;
+              stop-color: abstracts.$whiteColor !important;
+              fill: abstracts.$whiteColor !important;
+            }
+            path.path-arrow {
+              transition: all 0.3s ease-out;
+              fill: abstracts.$secondaryColor !important;
+            }
+
+            @media (min-width: 768px) {
+              width: 2rem;
+              height: 2rem;
+            }
+            @media (min-width: 1025px) {
+              width: 4rem;
+              height: 4rem;
+            }
+          }
+          &:hover {
+            background-color: abstracts.$accentColor;
+            // svg {
+            //   path.path-outside {
+            //     stop-color: abstracts.$accentColor !important;
+            //     fill: abstracts.$accentColor !important;
+            //   }
+            // }
+            svg {
+              path.path-arrow {
+                fill: abstracts.$accentColor !important;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
