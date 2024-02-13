@@ -2,6 +2,12 @@
 import { Image } from "astro:assets";
 import "./post.scss";
 const { post } = Astro.props;
+
+let formattedDate = new Date(post.date).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
 <div class="single-post-display">
@@ -15,7 +21,7 @@ const { post } = Astro.props;
   </div>
   <div class="single-post-display-text">
     <div class="single-post-display-date">
-      <p class="p-one">{post.date}</p>
+      <p class="p-one">{formattedDate}</p>
     </div>
     <div class="single-post-display-title">
       <h3 class="hl-four hl-white">{post.title}</h3>

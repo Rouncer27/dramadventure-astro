@@ -31,10 +31,7 @@ const {
     posts: { nodes: posts },
   },
 } = await response.json();
-
 const { data } = Astro.props;
-
-console.log("posts", posts);
 ---
 
 {

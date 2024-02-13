@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+import "./DramQuote.scss";
+const { data } = Astro.props;
+---
+
+<div class="dram-quote">
+  <div class="wrap-stand">
+    <div class="dram-quote-icon">
+      <Image
+        src={data.logoOrIcon.sourceUrl}
+        alt={``}
+        width="150"
+        height="200"
+      />
+    </div>
+    <div class="dram-quote-text">
+      <p class="hl-two hl-white dram-quote-text-quote">{data.quote}</p>
+      <p class="hl-four hl-white dram-quote-text-author">{data.author}</p>
+    </div>
+  </div>
+</div>

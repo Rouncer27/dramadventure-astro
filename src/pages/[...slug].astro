@@ -141,6 +141,15 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 fieldGroupName
                 title
               }
+
+              ... on Page_Pagecomponents_Components_DramQuote {
+                author
+                fieldGroupName
+                quote
+                logoOrIcon {
+                  sourceUrl
+                }
+              }
             }
           }
         }
