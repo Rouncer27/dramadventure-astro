@@ -1,0 +1,65 @@
+---
+import { replaceUrls } from "../../utils/replaceUrls";
+import "./footer.scss";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query footerQuery {
+      footerMenu {
+        footerMenu {
+          footerMenuItems {
+            menuItem {
+              destination {
+                ... on Page {
+                  link
+                }
+              }
+              label
+            }
+          }
+        }
+      }
+    }
+  `,
+  }),
+});
+
+const {
+  data: {
+    footerMenu: {
+      footerMenu: { footerMenuItems },
+    },
+  },
+} = await response.json();
+---
+
+<footer class="main-footer">
+  <div class="wrap-med">
+    <div class="main-footer-logo"></div>
+    <nav>
+      <ul>
+        {
+          footerMenuItems.map(({ menuItem }) => {
+            const href = replaceUrls(
+              menuItem.destination.link,
+              Astro.url.origin,
+            );
+            return (
+              <li>
+                <a class="p-one" href={href}>
+                  {menuItem.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+    <div class="main-footer-social"></div>
+  </div>
+</footer>

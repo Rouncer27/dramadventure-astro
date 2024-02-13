@@ -1,0 +1,34 @@
+@use "../../style/abstracts";
+
+.main-footer {
+  padding: 2.5rem 0;
+  background-color: abstracts.$creamColor;
+
+  &-logo {
+    width: calc(15%);
+  }
+  nav {
+    width: calc(70%);
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      li {
+        a {
+          font-weight: 600;
+          text-transform: uppercase;
+
+          &:hover {
+            color: abstracts.$accentColor;
+          }
+        }
+      }
+    }
+  }
+
+  &-social {
+    width: calc(15%);
+  }
+}
