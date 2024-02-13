@@ -1,9 +1,17 @@
 ---
 import { Image } from "astro:assets";
 import "./threeBlocks.scss";
+import { replaceUrls } from "../../utils/replaceUrls";
 const { data } = Astro.props;
 
 console.log("threeBlocks", data);
+
+const hrefOne = data?.content?.pageLinkOne?.link
+  ? replaceUrls(data.content.pageLinkOne.link, Astro.url.origin)
+  : null;
+const hrefTwo = data?.content?.pageLinkTwo?.link
+  ? replaceUrls(data.content.pageLinkTwo.link, Astro.url.origin)
+  : null;
 ---
 
 <div class="three-blocks">
@@ -32,7 +40,7 @@ console.log("threeBlocks", data);
           <div class="three-blocks-main-content--btns">
             {data.content.pageLinkOne && (
               <div class="three-blocks-main-content--btns-one">
-                <a class="btn btn-one" href={data.content.pageLinkOne.link}>
+                <a class="btn btn-one" href={hrefOne}>
                   {data.content.pageLinkOne.title}
                 </a>
               </div>
@@ -40,7 +48,7 @@ console.log("threeBlocks", data);
 
             {data.content.pageLinkTwo && (
               <div class="three-blocks-main-content--btns-two">
-                <a class="btn btn-two" href={data.content.pageLinkTwo.link}>
+                <a class="btn btn-two" href={hrefTwo}>
                   {data.content.pageLinkTwo.title}
                 </a>
               </div>
