@@ -179,6 +179,28 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                   sourceUrl
                 }
               }
+
+              ... on Page_Pagecomponents_Components_WysiwygContentSideLogo {
+                fieldGroupName
+                wysiwygContent
+                imageLogo {
+                  sourceUrl
+                }
+              }
+
+              ... on Page_Pagecomponents_Components_ContentImageFullWidth {
+                mainContent
+                fieldGroupName
+                sideImage {
+                  sourceUrl
+                }
+                middleIcon {
+                  sourceUrl
+                }
+                
+              }
+
+
             }
           }
         }
