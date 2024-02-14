@@ -150,6 +150,14 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                   sourceUrl
                 }
               }
+
+              ... on Page_Pagecomponents_Components_HeroV2 {
+                fieldGroupName
+                title
+                heroImage {
+                  sourceUrl
+                }
+              }
             }
           }
         }
