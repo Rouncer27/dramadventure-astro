@@ -10,7 +10,10 @@ header {
   .wrap-med {
     margin-top: 0;
     padding-top: 1rem;
-    padding-right: 0;
+
+    @media (min-width: 768px) {
+      padding-right: 0;
+    }
   }
 
   .head-wrapper {
@@ -20,23 +23,43 @@ header {
 
   .main-logo {
     position: relative;
+    margin: auto;
     width: 25%;
+
+    @media (min-width: 768px) {
+      margin: 0;
+    }
 
     &__graphic {
       position: absolute;
-      top: -12rem;
-      left: -12rem;
-      width: 25rem;
-      height: 25rem;
+      top: -5rem;
+      left: 50%;
+      width: 15rem;
+      height: 15rem;
       border-radius: 50%;
       background-color: abstracts.$whiteColor;
+      transform: translate(-50%, 0%);
       z-index: -1;
+
+      @media (min-width: 768px) {
+        top: -12rem;
+        left: -12rem;
+        width: 25rem;
+        height: 25rem;
+        transform: translate(0%, 0%);
+      }
     }
 
     &__wrap {
       position: relative;
-      max-width: 10rem;
+      max-width: 8rem;
+      margin: auto;
       z-index: 10;
+
+      @media (min-width: 768px) {
+        max-width: 10rem;
+        margin: 0;
+      }
     }
   }
 }

@@ -5,24 +5,33 @@
   overflow: hidden;
   .slide-wrap {
     width: 100%;
+    flex-wrap: wrap;
     display: flex;
 
     .slider-title {
       display: flex;
-      width: 20%;
-      padding-left: 5rem;
+      width: 100%;
+      margin-bottom: 5rem;
+
+      @media (min-width: 768px) {
+        width: 20%;
+        padding-left: 5rem;
+      }
 
       &__content {
         position: relative;
         width: 100%;
         text-align: center;
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
+
+        @media (min-width: 768px) {
+          writing-mode: vertical-rl;
+          transform: rotate(180deg);
+        }
 
         &::before,
         &::after {
           position: absolute;
-          left: 8rem;
+          left: 0rem;
           width: 100%;
           height: 0.25rem;
           background-color: abstracts.$creamColor;
@@ -30,13 +39,28 @@
         }
 
         &::before {
-          top: 80%;
-          transform: rotate(90deg);
+          top: 100%;
         }
 
         &::after {
-          top: 20%;
-          transform: rotate(-90deg);
+          display: none;
+        }
+
+        @media (min-width: 768px) {
+          &::before,
+          &::after {
+            left: 8rem;
+          }
+
+          &::before {
+            top: 80%;
+            transform: rotate(90deg);
+          }
+
+          &::after {
+            top: 20%;
+            transform: rotate(-90deg);
+          }
         }
 
         span {
@@ -46,7 +70,11 @@
     }
 
     .mySwiper {
-      width: 80%;
+      width: 100%;
+
+      @media (min-width: 768px) {
+        width: 80%;
+      }
 
       .swiper-wrapper {
         display: flex;
@@ -61,7 +89,11 @@
           position: relative;
           width: 100%;
           height: 50vw;
-          margin: 1rem 5rem;
+          margin: 1rem 20rem;
+
+          @media (min-width: 768px) {
+            margin: 1rem 5rem;
+          }
 
           img {
             position: absolute;

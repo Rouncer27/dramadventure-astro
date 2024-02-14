@@ -10,10 +10,12 @@
 
   &-image-one,
   &-image-two {
-    width: calc(100% / 3);
+    width: calc(100%);
+    min-height: 30rem;
     position: relative;
 
     @media (min-width: 768px) {
+      width: calc(100% / 3);
       min-height: 75rem;
     }
 
@@ -32,9 +34,13 @@
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    width: calc(100% / 3);
+    width: calc(100%);
     padding: 2rem;
     background-color: abstracts.$creamColor;
+
+    @media (min-width: 768px) {
+      width: calc(100% / 3);
+    }
 
     &--logo {
       width: 100%;

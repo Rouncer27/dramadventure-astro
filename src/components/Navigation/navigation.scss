@@ -1,18 +1,11 @@
 @use "../../style/abstracts/colors";
 
-.main-navigation {
-  position: fixed;
+.main-nav {
+  position: relative;
   width: 100%;
-  height: 100%;
-  top: 0;
-  right: 0;
-  align-self: flex-start;
-  z-index: 999999;
 
   @media (min-width: 768px) {
-    position: relative;
     width: 75%;
-    height: auto;
   }
 
   button {
@@ -21,69 +14,82 @@
     right: 2rem;
     width: 5rem;
     height: 5rem;
+    z-index: 999999999;
+    cursor: pointer;
 
     @media (min-width: 768px) {
       display: none;
     }
   }
 
-  .navigation-drawer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 3rem;
+  .main-navigation {
+    position: fixed;
+    width: 100%;
     height: 100%;
-    background-color: colors.$creamColor;
-    transition: all 0.2s ease-in;
+    top: 0;
+    right: 0;
+    align-self: flex-start;
+    z-index: 999999;
+    transition: all 0.3s ease-in;
     transform: translateX(100%);
 
     @media (min-width: 768px) {
+      position: relative;
+      height: auto;
       transform: translateX(0%);
     }
-  }
 
-  &.mobile-active {
-    .navigation-drawer {
+    &.mobile-active {
       transform: translateX(0%);
 
       @media (min-width: 768px) {
         transform: translateX(0%);
       }
     }
-  }
 
-  ul {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-    @media (min-width: 768px) {
-      flex-direction: row;
-      justify-content: space-between;
-    }
-  }
-
-  li {
-    margin: 0 0.5rem;
-
-    @media (min-width: 768px) {
+    .navigation-drawer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 3rem;
+      height: 100%;
+      width: 100%;
+      background-color: colors.$creamColor;
     }
 
-    a {
-      padding: 0.5rem 2rem;
-      text-transform: uppercase;
-      color: #333333;
-      font-weight: 600;
+    ul {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
 
-      &:hover {
-        color: colors.$accentColor;
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
       }
     }
 
-    &.cta {
+    li {
+      margin: 0 0.5rem;
+
+      @media (min-width: 768px) {
+      }
+
       a {
-        color: colors.$whiteColor;
+        padding: 0.5rem 2rem;
+        text-transform: uppercase;
+        color: #333333;
+        font-weight: 600;
+
+        &:hover {
+          color: colors.$accentColor;
+        }
+      }
+
+      &.cta {
+        a {
+          color: colors.$whiteColor;
+        }
       }
     }
   }

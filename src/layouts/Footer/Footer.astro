@@ -50,20 +50,20 @@ const {
     acfOptionsSiteWideSettings: { siteWideSettings },
   },
 } = await response.json();
-
-console.log("siteWideSettings", siteWideSettings);
 ---
 
 <footer class="main-footer">
   <div class="wrap-med main-footer-wrapper">
     <div class="main-footer-logo">
       <div class="main-footer-logo-wrap">
-        <Image
-          src={siteWideSettings.footerLogo.sourceUrl}
-          alt=""
-          width="250"
-          height="250"
-        />
+        <a href={Astro.url.origin}>
+          <Image
+            src={siteWideSettings.footerLogo.sourceUrl}
+            alt=""
+            width="250"
+            height="250"
+          />
+        </a>
       </div>
     </div>
     <nav>

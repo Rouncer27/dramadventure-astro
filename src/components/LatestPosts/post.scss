@@ -1,8 +1,13 @@
 @use "../../style/abstracts";
 
 .single-post-display {
-  width: calc((100% / 3) - 3rem);
-  margin: 1.5rem;
+  width: calc(100%);
+  margin-bottom: 2.5rem;
+
+  @media (min-width: 768px) {
+    width: calc(100% / 3);
+    margin: 1.5rem;
+  }
 
   &-image {
     position: relative;
