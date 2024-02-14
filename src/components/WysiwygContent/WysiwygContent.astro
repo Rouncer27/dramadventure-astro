@@ -1,0 +1,18 @@
+---
+import "./wysiwygContent.scss";
+const { data } = Astro.props;
+console.log("wysiwygContent: ", data);
+---
+
+<div class="wysiwyg-content">
+  <div class="wrap-stand">
+    {
+      data.mainTitle && (
+        <div class="wysiwyg-content-title">
+          <h2>{data.mainTitle}</h2>
+        </div>
+      )
+    }
+    <div class="wysiwyg-content-main" set:html={data.mainContent} />
+  </div>
+</div>

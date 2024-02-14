@@ -1,0 +1,16 @@
+@use "../../style/abstracts";
+@use "../../style/global/paragraphs";
+
+.wysiwyg-content {
+  width: 100%;
+  padding-top: 2.5rem;
+  background-color: abstracts.$creamColor;
+
+  &-main {
+    width: 100%;
+
+    p {
+      @extend .p-one;
+    }
+  }
+}

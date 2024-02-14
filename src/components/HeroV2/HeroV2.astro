@@ -1,14 +1,12 @@
 ---
 import { Image } from "astro:assets";
-import "./HeroV2.scss";
+import "./heroV2.scss";
 
 const { data } = Astro.props;
-
-console.log("HeroV2", data);
 ---
 
 <div class="herov2">
-  <div class="herov2-wrap wrap-stand">
+  <div class="herov2-wrap wrap-med">
     <div class="herov2-title">
       <h1 class="hl-one">{data.title}</h1>
     </div>
