@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import "./dramQuoteImages.scss";
+const { data } = Astro.props;
+---
+
+<div class="dram-quote-images">
+  <div class="dram-quote-images-wrap">
+    <div class="dram-quote-images-content">
+      <p class="hl-two hl-white">{data.quote}</p>
+      <p class="hl-four hl-white">{data.quoteAuthor}</p>
+    </div>
+    <div class="dram-quote-images-imgs-wrap">
+      <div class="dram-quote-images-one">
+        <Image src={data.imageOne.sourceUrl} alt="" width="750" height="750" />
+      </div>
+      <div class="dram-quote-images-two">
+        <Image src={data.imageTwo.sourceUrl} alt="" width="750" height="750" />
+      </div>
+      <div class="dram-quote-images-three">
+        <Image
+          src={data.imageThree.sourceUrl}
+          alt=""
+          width="750"
+          height="750"
+        />
+      </div>
+    </div>
+  </div>
+</div>
