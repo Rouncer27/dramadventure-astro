@@ -1,0 +1,25 @@
+@use "../../style/abstracts" as *;
+@use "../../style/global/paragraphs";
+
+.wysiwyg-side {
+  padding-top: 4rem;
+  background-color: $creamColor;
+
+  &-logo {
+    width: calc(25% - 1rem);
+    margin-right: 1rem;
+
+    &-wrap {
+      max-width: 13.75rem;
+      margin: 0 auto;
+    }
+  }
+
+  &-content {
+    width: calc(75% - 1rem);
+    margin-left: 1rem;
+    p {
+      @extend .p-one;
+    }
+  }
+}

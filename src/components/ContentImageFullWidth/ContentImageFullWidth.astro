@@ -1,9 +1,24 @@
 ---
+import { Image } from "astro:assets";
 import "./contentImageFullWidth.scss";
 const { data } = Astro.props;
-console.log("ContentImageFullWidth", data);
 ---
 
-<div>
-  <h1>ContentImageFullWidth</h1>
+<div class="content-img-full">
+  <div class="content-img-full-wrap">
+    <div class="content-img-full-content" set:html={data.mainContent} />
+    <div class="content-img-full-image">
+      <div class="content-img-full-image-wrap">
+        <Image src={data.sideImage.sourceUrl} alt="" width="750" height="750" />
+        <div class="content-img-full-image-icon">
+          <Image
+            src={data.middleIcon.sourceUrl}
+            alt=""
+            width="750"
+            height="750"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,9 +1,16 @@
 ---
+import { Image } from "astro:assets";
 import "./wysiwygContentSideLogo.scss";
 const { data } = Astro.props;
-console.log("WysiwygContentSideLogo", data);
 ---
 
-<div>
-  <h1>WysiwygContentSideLogo</h1>
+<div class="wysiwyg-side">
+  <div class="wrap-med wysiwyg-side-wrap">
+    <div class="wysiwyg-side-logo">
+      <div class="wysiwyg-side-logo-wrap">
+        <Image src={data.imageLogo.sourceUrl} alt="" width="750" height="750" />
+      </div>
+    </div>
+    <div class="wysiwyg-side-content" set:html={data.wysiwygContent} />
+  </div>
 </div>
