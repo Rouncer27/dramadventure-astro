@@ -1,6 +1,7 @@
 ---
 import Hero from "../components/Hero/Hero.astro";
 import HeroV2 from "../components/HeroV2/HeroV2.astro";
+import HeroV3 from "../components/HeroV3/HeroV3.astro";
 import ReviewSlider from "../components/ReviewSlider/ReviewSlider.jsx";
 import ThreeBlocks from "../components/ThreeBlocks/ThreeBlocks.astro";
 import LatestPosts from "../components/LatestPosts/LatestPosts.astro";
@@ -20,6 +21,9 @@ const { blocks, reviews } = Astro.props;
 
       case "Page_Pagecomponents_Components_HeroV2":
         return <HeroV2 data={block} />;
+
+      case "Page_Pagecomponents_Components_HeroV3":
+        return <HeroV3 data={block} />;
 
       case "Page_Pagecomponents_Components_ReviewSlider":
         return <ReviewSlider client:load data={block} reviews={reviews} />;
