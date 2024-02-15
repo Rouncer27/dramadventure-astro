@@ -5,14 +5,14 @@ const { data } = Astro.props;
 console.log("heroV3", data);
 ---
 
-<div class="hero-component">
-  <div class="hero-content">
-    <div class="hero-content-title">
-      <h1 class="hl-three hl-white">{data.heroTitleTop}</h1>
+<div class="herov3">
+  <div class="herov3-content">
+    <div class="herov3-content-title">
+      <h1 class="hl-one hl-white">{data.heroTitleTop}</h1>
       <h3 class="hl-three hl-white">{data.heroTitleBottom}</h3>
     </div>
   </div>
-  <div class="hero-image">
+  <div class="herov3-image">
     <Image
       src={data.heroImage.sourceUrl}
       alt="The Repo Room"
