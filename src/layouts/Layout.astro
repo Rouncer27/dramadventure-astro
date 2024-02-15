@@ -1,12 +1,10 @@
 ---
-interface Props {
-  title: string;
-}
-
 import Header from "./Header.astro";
 import Footer from "./Footer/Footer.astro";
 import "../style/style.scss";
-const { title } = Astro.props;
+const { seoImage, seoData } = Astro.props;
+
+console.log("seoData: ", seoData);
 ---
 
 <!doctype html>
@@ -17,7 +15,10 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <!-- SEO -->
+    <title>{seoData.title}</title>
+    <meta name="description" content={seoData.metaDesc} />
+    <meta name="image" content={seoImage} />
   </head>
   <body>
     <div class="main-wrapper">

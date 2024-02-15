@@ -41,6 +41,23 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     query PageQuery($uri: String!) {
       nodeByUri(uri: $uri) {
         ... on Page {
+
+          seo {
+            title
+            metaDesc
+            twitterTitle
+            twitterDescription
+            twitterImage {
+              sourceUrl
+            }
+          }
+
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+
           id
           slug
           title
@@ -237,9 +254,14 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const { data } = await response.json();
 const blocks = data.nodeByUri.pageComponents.components;
 const reviews = data.spritsReviews.nodes;
+
+console.log("data", data);
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout
+  seoData={data.nodeByUri.seo}
+  seoImage={data.nodeByUri.featuredImage.node.sourceUrl}
+>
   <main>
     <BlockRenderer blocks={blocks} reviews={reviews} />
   </main>
