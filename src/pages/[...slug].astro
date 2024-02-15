@@ -260,7 +260,9 @@ console.log("data", data);
 
 <Layout
   seoData={data.nodeByUri.seo}
-  seoImage={data.nodeByUri.featuredImage.node.sourceUrl}
+  seoImage={data?.nodeByUri?.featuredImage?.node?.sourceUrl
+    ? data?.nodeByUri?.featuredImage?.node?.sourceUrl
+    : null}
 >
   <main>
     <BlockRenderer blocks={blocks} reviews={reviews} />
