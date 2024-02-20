@@ -11,7 +11,7 @@ console.log("seoData: ", seoData);
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="HandheldFriendly" content="true" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
@@ -19,6 +19,22 @@ console.log("seoData: ", seoData);
     <title>{seoData.title}</title>
     <meta name="description" content={seoData.metaDesc} />
     <meta name="image" content={seoImage} />
+
+    <!-- OpenGraph Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={seoData.title} />
+    <meta property="og:description" content={seoData.metaDesc} />
+    <meta property="og:image" content={seoImage} />
+    <meta property="og:image:alt" content={seoData.metaDesc} />
+    <meta property="og:site_name" content={seoData.title} />
+    <meta property="og:locale" content={`en_US`} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content={"Trevor & Suzy Rounce"} />
+    <meta name="twitter:title" content={seoData.title} />
+    <meta name="twitter:description" content={seoData.metaDesc} />
+    <meta name="twitter:image" content={seoImage} />
   </head>
   <body>
     <div class="main-wrapper">
