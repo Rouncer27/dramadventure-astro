@@ -1,0 +1,14 @@
+@use "../../style/abstracts" as *;
+
+.three-slides {
+  padding: 5rem 0;
+  background-color: $primaryColor;
+
+  .swiper-slide {
+    transition: all 0.3s ease-in;
+  }
+
+  .swiper-slide.swiper-slide-next {
+    margin-top: 16.5rem;
+  }
+}

@@ -185,10 +185,20 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 }
               }
 
+              ... on Page_Pagecomponents_Components_HeroQuote {
+                fieldGroupName
+                heroQuoteAuthor
+                heroQuote
+                heroImage {
+                  sourceUrl
+                }
+              }
+
               ... on Page_Pagecomponents_Components_WysiwygContent {
                 fieldGroupName
                 mainContent
                 mainTitle
+                backgroundColor
               }
 
               ... on Page_Pagecomponents_Components_DramQuoteImages {
@@ -224,6 +234,17 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                   sourceUrl
                 }
                 
+              }
+
+
+
+              ... on Page_Pagecomponents_Components_SliderThreeImages {
+                fieldGroupName
+                slides {
+                  image {
+                    sourceUrl
+                  }
+                }
               }
 
 

@@ -1,0 +1,45 @@
+@use "../../style/abstracts/colors";
+
+.heroQuote {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+
+  .heroQuote-content {
+    position: absolute;
+    top: 0rem;
+    left: 5rem;
+    width: 100%;
+    max-width: 75rem;
+    padding: 4rem 8rem;
+    background-color: rgba(colors.$secondaryColor, 0.87);
+    z-index: 10;
+
+    .heroQuote-content-title {
+      h1,
+      h3 {
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  .heroQuote-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

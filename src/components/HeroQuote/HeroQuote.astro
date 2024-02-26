@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+import "./heroQuote.scss";
+const { data } = Astro.props;
+---
+
+<div class="heroQuote">
+  <div class="heroQuote-content">
+    <div class="heroQuote-content-title">
+      <h1 class="hl-one hl-white">{data.heroQuote}</h1>
+      <h3 class="hl-three hl-white">{data.heroQuoteAuthor}</h3>
+    </div>
+  </div>
+  <div class="heroQuote-image">
+    <Image
+      src={data.heroImage.sourceUrl}
+      alt="The Repo Room"
+      width={2500}
+      height={2500}
+    />
+  </div>
+</div>

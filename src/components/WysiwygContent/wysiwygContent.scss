@@ -13,4 +13,14 @@
       @extend .p-one;
     }
   }
+
+  &.background-black {
+    background-color: abstracts.$primaryColor;
+
+    .wysiwyg-content-main {
+      p {
+        color: abstracts.$whiteColor;
+      }
+    }
+  }
 }
