@@ -4,6 +4,11 @@
   padding: 5rem 0;
   background-color: $primaryColor;
 
+  .swiper {
+    height: 100rem;
+    overflow: visible;
+  }
+
   .swiper-slide {
     transition: all 0.3s ease-in;
   }

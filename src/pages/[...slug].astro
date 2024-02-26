@@ -247,6 +247,13 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 }
               }
 
+              ... on Page_Pagecomponents_Components_BigFontContent {
+                fieldGroupName
+                sectionTitle
+                sectionContent
+                backgroundColor
+              }
+
 
             }
           }

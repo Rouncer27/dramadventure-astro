@@ -1,0 +1,39 @@
+@use "../../style/abstracts" as *;
+@use "../../style/global/headlines";
+
+.big-font {
+  padding: 5rem 0;
+
+  &-title {
+    width: 100%;
+    margin-bottom: 5rem;
+
+    h2 {
+      text-transform: uppercase;
+    }
+  }
+
+  &-content {
+    width: 100%;
+
+    p {
+      @extend .hl-two;
+    }
+  }
+
+  &.background-black {
+    background-color: $primaryColor;
+
+    .big-font-title {
+      h2 {
+        color: $creamColor;
+      }
+    }
+
+    .big-font-content {
+      p {
+        color: $creamColor;
+      }
+    }
+  }
+}

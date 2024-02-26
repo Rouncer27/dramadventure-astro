@@ -1,0 +1,13 @@
+---
+import "./bigFontContent.scss";
+const { data } = Astro.props;
+---
+
+<div class={`big-font background-${data.backgroundColor}`}>
+  <div class="big-font-wrapper wrap-med">
+    <div class="big-font-title">
+      <h2 class="hl-two">{data.sectionTitle}</h2>
+    </div>
+    <div class="big-font-content" set:html={data.sectionContent} />
+  </div>
+</div>

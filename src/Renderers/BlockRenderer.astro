@@ -12,6 +12,7 @@ import WysiwygContent from "../components/WysiwygContent/WysiwygContent.astro";
 import WysiwygContentSideLogo from "../components/WysiwygContentSideLogo/WysiwygContentSideLogo.astro";
 import ContentImageFullWidth from "../components/ContentImageFullWidth/ContentImageFullWidth.astro";
 import SliderThreeImages from "../components/SliderThreeImages/SliderThreeImages.jsx";
+import BigFontContent from "../components/BigFontContent/BigFontContent.astro";
 const { blocks, reviews } = Astro.props;
 ---
 
@@ -56,6 +57,9 @@ const { blocks, reviews } = Astro.props;
 
       case "Page_Pagecomponents_Components_SliderThreeImages":
         return <SliderThreeImages client:load data={block} />;
+
+      case "Page_Pagecomponents_Components_BigFontContent":
+        return <BigFontContent data={block} />;
 
       default:
         return (
