@@ -33,27 +33,30 @@ import "./contactForm.scss";
 
 <script>
   const contactForm = document.querySelector("form");
-  const submitForm = async (e) => {
-    e.preventDefault();
-    const formdata = new FormData(contactForm);
-    formdata.append("_wpcf7_unit_tag", "ddabdd4");
-    const { yourname, youremail } = Object.fromEntries(formdata);
 
-    try {
-      const res = await fetch(
-        "https://dramadventure.swbdatabases2.ca/wp-json/contact-form-7/v1/contact-forms/479/feedback",
-        {
-          method: "POST",
-          body: formdata,
-        },
-      );
+  if (contactForm) {
+    const submitForm = async (e) => {
+      e.preventDefault();
+      const formdata = new FormData(contactForm);
+      formdata.append("_wpcf7_unit_tag", "ddabdd4");
+      const { yourname, youremail } = Object.fromEntries(formdata);
 
-      const response = await res.json();
-      console.log("Success: ", response);
-    } catch (e) {
-      console.log("Error: ", e);
-    }
-  };
+      try {
+        const res = await fetch(
+          "https://dramadventure.swbdatabases2.ca/wp-json/contact-form-7/v1/contact-forms/479/feedback",
+          {
+            method: "POST",
+            body: formdata,
+          },
+        );
 
-  contactForm.addEventListener("submit", submitForm);
+        const response = await res.json();
+        console.log("Success: ", response);
+      } catch (e) {
+        console.log("Error: ", e);
+      }
+    };
+
+    contactForm.addEventListener("submit", submitForm);
+  }
 </script>
