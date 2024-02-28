@@ -6,4 +6,7 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: "https://dram.netlify.app",
   integrations: [react()],
+  image: {
+    domains: ["dramadventure.swbdatabases2.ca"],
+  },
 });

@@ -254,6 +254,23 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 backgroundColor
               }
 
+              ... on Page_Pagecomponents_Components_ContactForm {
+                fieldGroupName
+                displayContactForm
+              }
+
+              ... on Page_Pagecomponents_Components_JustImages {
+                fieldGroupName
+                imageOne {
+                  sourceUrl
+                  altText
+                }
+                imageTwo {
+                  sourceUrl
+                  altText
+                }
+              }
+
 
             }
           }
@@ -294,5 +311,29 @@ console.log("data", data);
 >
   <main>
     <BlockRenderer blocks={blocks} reviews={reviews} />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+
+    <div class="your-class">
+      <div>your content</div>
+      <div>your content</div>
+      <div>your content</div>
+    </div>
   </main>
 </Layout>
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<script
+  type="text/javascript"
+  src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script is:inline>
+  $(document).ready(function () {
+    $(".your-class").slick({});
+  });
+</script>

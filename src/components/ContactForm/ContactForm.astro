@@ -1,0 +1,59 @@
+---
+import "./contactForm.scss";
+---
+
+<div class="contact-form">
+  <div class="wrap-med">
+    <div class="contact-form-title">
+      <h2>Contact Us</h2>
+      <p>
+        Have a question or comment for us, please reach out and let us know!
+      </p>
+    </div>
+    <div class="contact-form-form">
+      <form id="contact-form">
+        <div class="input-wrapper">
+          <label class="yourname" for="yourname">
+            Your Name
+            <span class="required">&#42;</span>
+            <input name="yourname" type="text" value="" id="yourname" />
+          </label>
+          <label class="youremail" for="youremail">
+            Your Emain Address
+            <span class="required">&#42;</span>
+            <input name="youremail" type="email" value="" id="youremail" />
+          </label>
+          <button type="submit">Contact Us</button>
+          <p class="message"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const contactForm = document.querySelector("form");
+  const submitForm = async (e) => {
+    e.preventDefault();
+    const formdata = new FormData(contactForm);
+    formdata.append("_wpcf7_unit_tag", "ddabdd4");
+    const { yourname, youremail } = Object.fromEntries(formdata);
+
+    try {
+      const res = await fetch(
+        "https://dramadventure.swbdatabases2.ca/wp-json/contact-form-7/v1/contact-forms/479/feedback",
+        {
+          method: "POST",
+          body: formdata,
+        },
+      );
+
+      const response = await res.json();
+      console.log("Success: ", response);
+    } catch (e) {
+      console.log("Error: ", e);
+    }
+  };
+
+  contactForm.addEventListener("submit", submitForm);
+</script>
