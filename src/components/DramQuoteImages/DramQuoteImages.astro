@@ -28,3 +28,27 @@ const { data } = Astro.props;
     </div>
   </div>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tigger = document.querySelector(".dram-quote-images");
+  const quote = document.querySelector(".dram-quote-images-content p.hl-two");
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: tigger,
+        markers: false,
+        start: "top 40%",
+        scrub: false,
+      },
+    })
+    .fromTo(
+      quote,
+      { autoAlpha: 0 },
+      { autoAlpha: 1, ease: "power2.out", duration: 1.5 },
+    );
+</script>

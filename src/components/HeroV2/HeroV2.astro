@@ -1,15 +1,16 @@
 ---
 import { Image } from "astro:assets";
-import HeadlineOne from "../shared/HeadlineOne.astro";
+import Headline from "../shared/Headline.astro";
+import Wrapper from "../shared/Wrapper.astro";
 
 const { data } = Astro.props;
 ---
 
 <div class="herov2">
-  <div class="herov2-wrap wrap-med">
+  <Wrapper wrapType="med">
     <div class="herov2-title">
-      <HeadlineOne modifier="herov2-title-element" ele="h1"
-        >{data.title}</HeadlineOne
+      <Headline modifier="herov2-title-element" hlstyle="one" ele="h1"
+        >{data.title}</Headline
       >
     </div>
     <div class="herov2-image">
@@ -22,7 +23,7 @@ const { data } = Astro.props;
         />
       </div>
     </div>
-  </div>
+  </Wrapper>
 </div>
 
 <style lang="scss">

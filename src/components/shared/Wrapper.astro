@@ -1,0 +1,7 @@
+---
+const { wrapType, modifier } = Astro.props;
+---
+
+<div class={`wrap-${wrapType} ${modifier}`}>
+  <slot />
+</div>
