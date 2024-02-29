@@ -15,6 +15,7 @@ import SliderThreeImages from "../components/SliderThreeImages/SliderThreeImages
 import BigFontContent from "../components/BigFontContent/BigFontContent.astro";
 import ContactForm from "../components/ContactForm/ContactForm.astro";
 import JustImages from "../components/JustImages/JustImages.astro";
+import DisplayReviews from "../components/DisplayReviews/DisplayReviews.astro";
 const { blocks, reviews } = Astro.props;
 ---
 
@@ -68,6 +69,9 @@ const { blocks, reviews } = Astro.props;
 
       case "Page_Pagecomponents_Components_JustImages":
         return <JustImages data={block} />;
+
+      case "Page_Pagecomponents_Components_DisplayReviews":
+        return <DisplayReviews data={block} reviews={reviews} />;
 
       default:
         return (

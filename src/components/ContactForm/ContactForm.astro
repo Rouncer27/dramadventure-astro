@@ -31,32 +31,31 @@ import "./contactForm.scss";
   </div>
 </div>
 
-<script>
+<script is:inline>
   const contactForm = document.querySelector("form");
+  console.log("HELLO WORLD!", contactForm);
 
-  if (contactForm) {
-    const submitForm = async (e) => {
-      e.preventDefault();
-      const formdata = new FormData(contactForm);
-      formdata.append("_wpcf7_unit_tag", "ddabdd4");
-      const { yourname, youremail } = Object.fromEntries(formdata);
+  const submitForm = async (e) => {
+    e.preventDefault();
+    const formdata = new FormData(contactForm);
+    formdata.append("_wpcf7_unit_tag", "ddabdd4");
+    const { yourname, youremail } = Object.fromEntries(formdata);
 
-      try {
-        const res = await fetch(
-          "https://dramadventure.swbdatabases2.ca/wp-json/contact-form-7/v1/contact-forms/479/feedback",
-          {
-            method: "POST",
-            body: formdata,
-          },
-        );
+    try {
+      const res = await fetch(
+        "https://dramadventure.swbdatabases2.ca/wp-json/contact-form-7/v1/contact-forms/479/feedback",
+        {
+          method: "POST",
+          body: formdata,
+        },
+      );
 
-        const response = await res.json();
-        console.log("Success: ", response);
-      } catch (e) {
-        console.log("Error: ", e);
-      }
-    };
+      const response = await res.json();
+      console.log("Success: ", response);
+    } catch (e) {
+      console.log("Error: ", e);
+    }
+  };
 
-    contactForm.addEventListener("submit", submitForm);
-  }
+  contactForm.addEventListener("submit", submitForm);
 </script>

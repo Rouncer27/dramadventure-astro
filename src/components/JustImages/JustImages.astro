@@ -1,9 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import "./justImages.scss";
 const { data } = Astro.props;
-
-console.log("data", data);
 ---
 
 <div class="just-images">
@@ -16,7 +13,7 @@ console.log("data", data);
         height={1500}
       />
     </div>
-    <div class="just-images-one">
+    <div class="just-images-two">
       <Image
         src={data.imageTwo.sourceUrl}
         alt={data.imageTwo.altText}
@@ -28,3 +25,29 @@ console.log("data", data);
     </div>
   </div>
 </div>
+
+<style lang="scss">
+  @use "../../style/abstracts" as *;
+
+  .just-images {
+    width: 100%;
+    padding: 10rem 0 2rem;
+    background-color: $primaryColor;
+
+    &-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    &-one {
+      width: 44rem;
+    }
+
+    &-two {
+      width: 73rem;
+      margin-top: 5rem;
+      margin-left: 5rem;
+    }
+  }
+</style>

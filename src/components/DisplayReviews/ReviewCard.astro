@@ -1,0 +1,30 @@
+---
+const { review } = Astro.props;
+import { Image } from "astro:assets";
+
+console.log("review: ", review);
+---
+
+<div class="review-card">
+  <div class="review-card-wrapper">
+    <div class="review-card-image">
+      <Image
+        src={review.reviewsContent.reviewArticleImage.sourceUrl}
+        alt={review.title}
+        width={500}
+        height={750}
+      />
+    </div>
+    <h2>{review.title}</h2>
+    <a href="/">Home</a>
+  </div>
+</div>
+
+<style lang="scss">
+  .review-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+</style>

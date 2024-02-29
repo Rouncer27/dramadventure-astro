@@ -271,6 +271,11 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 }
               }
 
+              ... on Page_Pagecomponents_Components_DisplayReviews {
+                fieldGroupName
+                displayReviews
+              }
+
 
             }
           }
@@ -281,8 +286,24 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
         nodes {
           title
           reviewsContent {
+            articleExcerpt
+            adventureWorthy
             featuredImage {
               sourceUrl
+            }
+
+            reviewArticleImage {
+              sourceUrl
+            }
+          }
+          whiskeyRegions {
+            nodes {
+              name
+            }
+          }
+          whiskyTypes {
+            nodes {
+              name
             }
           }
         }

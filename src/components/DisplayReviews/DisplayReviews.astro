@@ -1,0 +1,15 @@
+---
+const { data, reviews } = Astro.props;
+import ReviewCard from "./ReviewCard.astro";
+console.log(reviews);
+---
+
+<div class="reviews">
+  <div class="reviews-wrapper wrap-med">
+    {
+      reviews.map((review) => {
+        return <ReviewCard review={review} />;
+      })
+    }
+  </div>
+</div>
