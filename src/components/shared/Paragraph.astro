@@ -1,0 +1,39 @@
+---
+const { ele, pstyle, modifier } = Astro.props;
+---
+
+{
+  ele === "h1" ? (
+    <h1 class={`p-${pstyle} ${modifier}`}>
+      <slot />
+    </h1>
+  ) : ele === "h2" ? (
+    <h2 class={`p-${pstyle} ${modifier}`}>
+      <slot />
+    </h2>
+  ) : ele === "h3" ? (
+    <h3 class={`p-${pstyle} ${modifier}`}>
+      <slot />
+    </h3>
+  ) : ele === "h4" ? (
+    <h4 class={`p-${pstyle} ${modifier}`}>
+      <slot />
+    </h4>
+  ) : ele === "h5" ? (
+    <h5 class={`p-${pstyle} ${modifier}`}>
+      <slot />
+    </h5>
+  ) : ele === "h6" ? (
+    <h6 class={`p-${pstyle} ${modifier}`}>
+      <slot />
+    </h6>
+  ) : ele === "p" ? (
+    <p class={`p-${pstyle} ${modifier}`}>
+      <slot />
+    </p>
+  ) : (
+    <h1 class={`p-one ${modifier}`}>
+      <slot />
+    </h1>
+  )
+}

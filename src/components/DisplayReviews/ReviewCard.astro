@@ -1,6 +1,10 @@
 ---
 const { review } = Astro.props;
 import { Image } from "astro:assets";
+import Headline from "../shared/Headline.astro";
+import Paragraph from "../shared/Paragraph.astro";
+const region = review.whiskeyRegions.nodes[0].name;
+const type = review.whiskyTypes.nodes[0].name;
 ---
 
 <div class="review-card">
@@ -13,16 +17,57 @@ import { Image } from "astro:assets";
         height={750}
       />
     </div>
-    <h2>{review.title}</h2>
-    <a href="/">Home</a>
+    <div class="review-card-content">
+      <div class="review-card-content-header">
+        <Headline ele="h2" hlstyle="three" modifier="review-header"
+          >{review.title}, <span>{region}, {type}</span></Headline
+        >
+      </div>
+      <Paragraph ele="p" pstyle="one"
+        >{review.reviewsContent.articleExcerpt}</Paragraph
+      >
+    </div>
   </div>
 </div>
 
 <style lang="scss">
+  @use "../../style/abstracts" as *;
+
   .review-card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
+    margin-bottom: 2.5rem;
+    background-color: $whiteColor;
+
+    &-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    &-image {
+      width: calc(33.33%);
+    }
+
+    &-content {
+      width: calc(66.66%);
+      padding: 4.5rem;
+
+      &-header {
+        max-width: 70%;
+      }
+    }
+  }
+</style>
+
+<style is:global lang="scss">
+  @use "../../style/abstracts" as *;
+
+  .review-header {
+    color: $secondaryColor;
+    text-transform: uppercase;
+
+    span {
+      display: block;
+    }
   }
 </style>

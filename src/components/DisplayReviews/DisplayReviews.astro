@@ -1,14 +1,23 @@
 ---
 const { data, reviews } = Astro.props;
 import ReviewCard from "./ReviewCard.astro";
+import Wrapper from "../shared/Wrapper.astro";
 ---
 
 <div class="reviews">
-  <div class="reviews-wrapper wrap-med">
+  <Wrapper wrapType="med">
     {
       reviews.map((review) => {
         return <ReviewCard review={review} />;
       })
     }
-  </div>
+  </Wrapper>
 </div>
+
+<style lang="scss">
+  @use "../../style/abstracts/colors";
+
+  .reviews {
+    background-color: colors.$creamColor;
+  }
+</style>

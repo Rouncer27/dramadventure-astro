@@ -29,28 +29,28 @@ const { data } = Astro.props;
   </div>
 </div>
 
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
+<script is:inline type="module">
+  import { gsap } from "../../../node_modules/gsap";
+  import { ScrollTrigger } from "../../../node_modules/gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
   const tigger = document.querySelector(".dram-quote-images");
   const quote = document.querySelector(".dram-quote-images-content p.hl-two");
 
-  if (tigger && quote) {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: tigger,
-          markers: false,
-          start: "top 40%",
-          scrub: false,
-        },
-      })
-      .fromTo(
-        quote,
-        { autoAlpha: 0, x: 100 },
-        { autoAlpha: 1, ease: "power2.out", duration: 1.5, x: 0 },
-      );
-  }
+  console.log("HELLO THERE!");
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: tigger,
+        markers: false,
+        start: "top 40%",
+        scrub: false,
+      },
+    })
+    .fromTo(
+      quote,
+      { autoAlpha: 0, x: 100 },
+      { autoAlpha: 1, ease: "power2.out", duration: 1.5, x: 0 },
+    );
 </script>
