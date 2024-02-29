@@ -320,8 +320,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const { data } = await response.json();
 const blocks = data.nodeByUri.pageComponents.components;
 const reviews = data.spritsReviews.nodes;
-
-console.log("data", data);
 ---
 
 <Layout

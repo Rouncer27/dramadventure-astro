@@ -33,8 +33,6 @@ import "./contactForm.scss";
 
 <script is:inline>
   const contactForm = document.querySelector("form");
-  console.log("HELLO WORLD!", contactForm);
-
   const submitForm = async (e) => {
     e.preventDefault();
     const formdata = new FormData(contactForm);
