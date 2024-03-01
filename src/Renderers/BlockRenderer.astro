@@ -29,10 +29,10 @@ const { blocks, reviews } = Astro.props;
         return <HeroV2 client:visible data={block} />;
 
       case "Page_Pagecomponents_Components_HeroV3":
-        return <HeroV3 data={block} />;
+        return <HeroV3 client:visible data={block} />;
 
       case "Page_Pagecomponents_Components_HeroQuote":
-        return <HeroQuote data={block} />;
+        return <HeroQuote client:visible data={block} />;
 
       case "Page_Pagecomponents_Components_ReviewSlider":
         return <ReviewSlider client:load data={block} reviews={reviews} />;
@@ -44,7 +44,7 @@ const { blocks, reviews } = Astro.props;
         return <LatestPosts data={block} />;
 
       case "Page_Pagecomponents_Components_DramQuote":
-        return <DramQuote data={block} />;
+        return <DramQuote client:visible data={block} />;
 
       case "Page_Pagecomponents_Components_DramQuoteImages":
         return <DramQuoteImages client:visible data={block} />;
