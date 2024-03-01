@@ -21,10 +21,30 @@ const { data } = Astro.props;
   </div>
 </div>
 
-<script is:inline>
+<script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
+
+  console.log("HELLO HEROQUOTE THERE!");
+
+  const tigger = document.querySelector(".heroQuote");
+  const quote = document.querySelector(".heroQuote-content-title h1");
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: tigger,
+        markers: false,
+        start: "top 40%",
+        scrub: false,
+      },
+    })
+    .fromTo(
+      quote,
+      { autoAlpha: 0, x: 100 },
+      { autoAlpha: 1, ease: "power2.out", duration: 1.5, x: 0 },
+    );
 
   console.log(gsap);
 </script>

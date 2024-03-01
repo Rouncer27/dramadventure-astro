@@ -85,3 +85,29 @@ const { data } = Astro.props;
     z-index: 10;
   }
 </style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tigger = document.querySelector(".herov2");
+  const quote = document.querySelector(".herov2-title h2");
+
+  console.log("HELLO HEROV2 THERE!");
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: tigger,
+        markers: false,
+        start: "top 40%",
+        scrub: false,
+      },
+    })
+    .fromTo(
+      quote,
+      { autoAlpha: 0, x: 100 },
+      { autoAlpha: 1, ease: "power2.out", duration: 1.5, x: 0 },
+    );
+</script>
