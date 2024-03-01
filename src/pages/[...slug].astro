@@ -285,6 +285,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
       spritsReviews {
         nodes {
           title
+          slug
+          date
           reviewsContent {
             articleExcerpt
             adventureWorthy

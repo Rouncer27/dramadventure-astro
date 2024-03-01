@@ -1,39 +1,14 @@
 ---
-const { ele, hlstyle, modifier } = Astro.props;
+const {
+  ele = "h1",
+  hlstyle = "hl-one",
+  classes,
+  modifier,
+  ...rest
+} = Astro.props;
+const Tag = ele;
 ---
 
-{
-  ele === "h1" ? (
-    <h1 class={`hl-${hlstyle} ${modifier}`}>
-      <slot />
-    </h1>
-  ) : ele === "h2" ? (
-    <h2 class={`hl-${hlstyle} ${modifier}`}>
-      <slot />
-    </h2>
-  ) : ele === "h3" ? (
-    <h3 class={`hl-${hlstyle} ${modifier}`}>
-      <slot />
-    </h3>
-  ) : ele === "h4" ? (
-    <h4 class={`hl-${hlstyle} ${modifier}`}>
-      <slot />
-    </h4>
-  ) : ele === "h5" ? (
-    <h5 class={`hl-${hlstyle} ${modifier}`}>
-      <slot />
-    </h5>
-  ) : ele === "h6" ? (
-    <h6 class={`hl-${hlstyle} ${modifier}`}>
-      <slot />
-    </h6>
-  ) : ele === "p" ? (
-    <p class={`hl-${hlstyle} ${modifier}`}>
-      <slot />
-    </p>
-  ) : (
-    <h1 class={`hl-one ${modifier}`}>
-      <slot />
-    </h1>
-  )
-}
+<Tag {...rest} class:list={[`hl-${hlstyle}`, classes, modifier]}>
+  <slot />
+</Tag>

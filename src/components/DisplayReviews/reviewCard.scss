@@ -1,0 +1,60 @@
+@use "../../style/abstracts" as *;
+@use "../../style/global/paragraphs";
+
+.review-card {
+  margin-bottom: 3rem;
+  background-color: $whiteColor;
+
+  &-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &-image {
+    width: calc(25%);
+  }
+
+  &-content {
+    position: relative;
+    width: calc(75%);
+    padding: 4.5rem;
+
+    &-header {
+      max-width: 70%;
+    }
+
+    a {
+      @extend .p-one;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    &-date {
+      padding-top: 2rem;
+      border-top: 0.2rem solid $creamColor;
+
+      p {
+        text-transform: uppercase;
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 9.5rem;
+      height: 9.5rem;
+    }
+  }
+
+  .review-header {
+    color: $secondaryColor;
+    text-transform: uppercase;
+
+    span {
+      display: block;
+    }
+  }
+}
