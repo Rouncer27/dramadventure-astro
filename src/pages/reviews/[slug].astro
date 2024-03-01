@@ -1,5 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/SinglePosts/Hero/Hero.astro";
+import Intro from "../../components/SinglePosts/Intro/Intro.astro";
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     method: "POST",
@@ -11,7 +13,8 @@ export async function getStaticPaths() {
         query reviewsQuery {
             spritsReviews(first: 999999) {
                 nodes {
-                slug
+                    slug
+                    uri
                 }
             }
         }
@@ -21,15 +24,52 @@ export async function getStaticPaths() {
 
   const { data } = await response.json();
 
-  return data.spritsReviews.nodes.map((page) => {
+  return data.spritsReviews.nodes.map((review) => {
     return {
-      params: { slug: page.slug === "/" ? undefined : page.slug },
-      props: { trevor: "rounce" },
+      params: { slug: `${review.slug}` },
     };
   });
 }
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query reviewsQuery {
+        spritReview(idType: SLUG, id: "12-year-old-kilkerran") {
+                date
+                title
+            }
+
+        acfOptionsSiteWideSettings {
+                siteWideSettings {
+                    reviewsArticlesInsideHeroImage {
+                        sourceUrl
+                    }
+                }
+            }
+        }
+    `,
+    variables: {
+      uri: Astro.params["slug"],
+    },
+  }),
+});
+
+const {
+  data: { spritReview, acfOptionsSiteWideSettings },
+} = await response.json();
+
+console.log("spritReview", spritReview);
 ---
 
 <Layout>
-  <main>hello</main>
+  <Hero
+    data={acfOptionsSiteWideSettings.siteWideSettings
+      .reviewsArticlesInsideHeroImage}
+  />
+  <Intro />
 </Layout>

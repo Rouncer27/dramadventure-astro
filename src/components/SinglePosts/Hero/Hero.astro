@@ -1,0 +1,11 @@
+---
+import { Image } from "astro:assets";
+import "./Hero.scss";
+const { data } = Astro.props;
+---
+
+<div class="hero">
+  <div class="hero-wrap">
+    <Image src={data.sourceUrl} alt="" width={2500} height={1000} />
+  </div>
+</div>
