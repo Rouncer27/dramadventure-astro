@@ -28,3 +28,11 @@ const { data } = Astro.props;
     />
   </div>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  console.log(gsap);
+</script>

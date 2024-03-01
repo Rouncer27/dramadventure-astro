@@ -20,3 +20,11 @@ const { data } = Astro.props;
     />
   </div>
 </div>
+
+<script is:inline>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  console.log(gsap);
+</script>
