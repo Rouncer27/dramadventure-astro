@@ -1,0 +1,84 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/SinglePosts/Hero/Hero.astro";
+import Intro from "../../components/SinglePosts/Intro/Intro.astro";
+import MainArticle from "../../components/SinglePosts/MainArticle/MainArticle.astro";
+export async function getStaticPaths() {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query postsQuery {
+            posts(first: 999999) {
+                nodes {
+                    slug
+                    uri
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+
+  return data.posts.nodes.map((posts) => {
+    return {
+      params: { slug: `${posts.slug}` },
+    };
+  });
+}
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query postQuery($id: ID!) {
+        post(idType: SLUG, id: $id) {
+            title
+            postsComponents {
+                introQuote
+                mainArticle
+                featuredImage {
+                    altText
+                    sourceUrl
+                }
+            }
+        }
+
+        acfOptionsSiteWideSettings {
+            siteWideSettings {
+                reviewsArticlesInsideHeroImage {
+                    sourceUrl
+                }
+            }
+        }
+    }
+    `,
+    variables: {
+      id: Astro.params["slug"],
+    },
+  }),
+});
+
+const {
+  data: { post, acfOptionsSiteWideSettings },
+} = await response.json();
+
+console.log("post", post);
+---
+
+<Layout>
+  <Hero
+    data={acfOptionsSiteWideSettings.siteWideSettings
+      .reviewsArticlesInsideHeroImage}
+  />
+  <Intro data={post} />
+  <MainArticle data={post} />
+</Layout>

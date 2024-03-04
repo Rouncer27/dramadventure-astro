@@ -16,7 +16,8 @@ import BigFontContent from "../components/BigFontContent/BigFontContent.astro";
 import ContactForm from "../components/ContactForm/ContactForm.astro";
 import JustImages from "../components/JustImages/JustImages.astro";
 import DisplayReviews from "../components/DisplayReviews/DisplayReviews.astro";
-const { blocks, reviews } = Astro.props;
+import DisplayPostArticles from "../components/DisplayPostArticles/DisplayPostArticles.astro";
+const { blocks, reviews, posts } = Astro.props;
 ---
 
 {
@@ -72,6 +73,9 @@ const { blocks, reviews } = Astro.props;
 
       case "Page_Pagecomponents_Components_DisplayReviews":
         return <DisplayReviews data={block} reviews={reviews} />;
+
+      case "Page_Pagecomponents_Components_DisplayPostArticles":
+        return <DisplayPostArticles data={block} posts={posts} />;
 
       default:
         return (

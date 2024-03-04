@@ -1,0 +1,33 @@
+---
+import "./mainArticle.scss";
+import Wrappper from "../../shared/Wrapper.astro";
+import Wysiwyg from "../../shared/Wysiwyg.astro";
+import Headline from "../../shared/Headline.astro";
+import { Image } from "astro:assets";
+import euphoria from "../../../assets/icons/badges-explorer-s-euphoria.png";
+import worthy from "../../../assets/icons/badges-adventure-worthy.png";
+const { data } = Astro.props;
+---
+
+<div class="main-article">
+  <Wrappper classes="main-article-wrapper">
+    <Wysiwyg classes="main-article-content">
+      <div set:html={data.reviewsContent.mainArticleReview} />
+    </Wysiwyg>
+    <div class="main-article-sidebar">
+      <div class="main-article-sidebar-icon">
+        <Image src={euphoria} alt={`Explorer's Euphoria`} />
+      </div>
+      <div class="main-article-sidebar-score">
+        <Headline ele="p" hlstyle="three">
+          <span>Score</span><span
+            >{data.reviewsContent.reviewScore.score}/100</span
+          >
+        </Headline>
+      </div>
+      <div class="main-article-sidebar-worthy">
+        <Image src={worthy} alt={`Adventure Worthy`} />
+      </div>
+    </div>
+  </Wrappper>
+</div>

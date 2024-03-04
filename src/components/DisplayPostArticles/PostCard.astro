@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import Headline from "../shared/Headline.astro";
+import Paragraph from "../shared/Paragraph.astro";
+import "./postCard.scss";
+const { post } = Astro.props;
+let formattedDate = new Date(post.date).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<div class="post-card">
+  <div class="post-card-wrapper">
+    <div class="post-card-image">
+      <Image
+        src={post.postsComponents.featuredImage.sourceUrl}
+        alt={post.title}
+        width={500}
+        height={750}
+      />
+    </div>
+    <div class="post-card-content">
+      <div class="post-card-content-header">
+        <Headline ele="h2" hlstyle="three" modifier="post-header"
+          >{post.title}</Headline
+        >
+      </div>
+      <Paragraph ele="p" pstyle="one"
+        >{post.postsComponents.articleExcerpt}{" "}
+        <a href={`/articles/${post.slug}`}>Read Post</a></Paragraph
+      >
+      <div class="post-card-content-date">
+        <Paragraph ele="p" pstyle="one">{formattedDate}</Paragraph>
+      </div>
+    </div>
+  </div>
+</div>

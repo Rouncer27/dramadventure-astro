@@ -1,0 +1,80 @@
+@use "../../../style/abstracts" as *;
+@use "../../../style/global/paragraphs";
+
+.review-intro {
+  &-wrapper {
+    padding-top: 0;
+  }
+
+  &-featured {
+    width: calc(33.333333%);
+  }
+
+  &-header {
+    width: calc(66.666666%);
+    padding: 4.3rem;
+
+    &-stats {
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      width: 100%;
+      padding-bottom: 3.8rem;
+
+      &-abv {
+        width: calc(50%);
+
+        &-content {
+          color: $secondaryColor;
+          font-weight: bold;
+          text-transform: uppercase;
+          margin: 0;
+          padding: 0;
+        }
+      }
+
+      &-filtered {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        width: calc(25% - 0.75rem);
+        margin-right: 0.75rem;
+
+        div {
+          width: 12.2rem;
+        }
+      }
+
+      &-colour {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: calc(25% - 0.75rem);
+        margin-left: 0.75rem;
+
+        div {
+          width: 15.9rem;
+        }
+      }
+    }
+
+    &-title {
+      width: 100%;
+      color: $secondaryColor;
+      text-transform: uppercase;
+
+      span {
+        display: block;
+      }
+    }
+
+    &-description {
+      width: 100%;
+
+      p {
+        @extend .p-one;
+      }
+    }
+  }
+}

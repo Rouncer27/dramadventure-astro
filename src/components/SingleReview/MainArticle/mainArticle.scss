@@ -1,0 +1,39 @@
+@use "../../../style/abstracts" as *;
+
+.main-article {
+  width: 100%;
+
+  &-wrapper {
+    flex-direction: row-reverse;
+  }
+
+  &-content {
+    width: calc(80%);
+  }
+
+  &-sidebar {
+    width: calc(20%);
+    padding: 0 1.5rem;
+    text-align: center;
+
+    &-icon,
+    &-worthy {
+      width: 18rem;
+      margin: auto;
+    }
+
+    &-score {
+      padding: 1rem;
+
+      p {
+        margin: 0;
+        color: $secondaryColor;
+        text-transform: uppercase;
+
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+}

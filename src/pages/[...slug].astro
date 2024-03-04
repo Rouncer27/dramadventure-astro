@@ -277,6 +277,12 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
               }
 
 
+              ... on Page_Pagecomponents_Components_DisplayPostArticles {
+                fieldGroupName
+                displayPostArticles
+              }
+
+
             }
           }
         }
@@ -311,6 +317,23 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
         }
       }
 
+      posts {
+        nodes {
+          slug
+          title
+          date
+          postsComponents {
+            articleExcerpt
+            featuredImage {
+              altText
+              sourceUrl
+            }
+          }
+        }
+      }
+
+
+
     }
   `,
     variables: {
@@ -322,6 +345,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const { data } = await response.json();
 const blocks = data.nodeByUri.pageComponents.components;
 const reviews = data.spritsReviews.nodes;
+const posts = data.posts.nodes;
 ---
 
 <Layout
@@ -331,6 +355,6 @@ const reviews = data.spritsReviews.nodes;
     : null}
 >
   <main>
-    <BlockRenderer blocks={blocks} reviews={reviews} />
+    <BlockRenderer blocks={blocks} reviews={reviews} posts={posts} />
   </main>
 </Layout>

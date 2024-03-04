@@ -24,7 +24,11 @@ let formattedDate = new Date(post.date).toLocaleDateString("en-US", {
       <p class="p-one">{formattedDate}</p>
     </div>
     <div class="single-post-display-title">
-      <h3 class="hl-four hl-white">{post.title}</h3>
+      <h3 class="hl-four hl-white">
+        <a class="hl-four hl-white" href={`/articles/${post.slug}`}
+          >{post.title}</a
+        >
+      </h3>
     </div>
   </div>
 </div>

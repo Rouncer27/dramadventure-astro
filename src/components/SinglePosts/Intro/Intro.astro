@@ -3,52 +3,28 @@ import "./intro.scss";
 import Wrappper from "../../shared/Wrapper.astro";
 import Headline from "../../shared/Headline.astro";
 import { Image } from "astro:assets";
-import filtered from "../../../assets/icons/badges-non-chill-filtered.png";
-import coloured from "../../../assets/icons/badges-no-colour.png";
 const { data } = Astro.props;
-const whiskeyRegions = data.whiskeyRegions.nodes[0].name;
-const whiskyTypes = data.whiskyTypes.nodes[0].name;
 ---
 
-<div class="review-intro">
-  <Wrappper wrapType="med" classes="review-intro-wrapper">
-    <div class="review-intro-featured">
-      <div class="review-intro-featured-image">
+<div class="post-intro">
+  <Wrappper wrapType="med" classes="post-intro-wrapper">
+    <div class="post-intro-featured">
+      <div class="post-intro-featured-image">
         <Image
-          src={data.reviewsContent.reviewArticleImage.sourceUrl}
-          alt={data.reviewsContent.reviewArticleImage.altText}
+          src={data.postsComponents.featuredImage.sourceUrl}
+          alt={data.postsComponents.featuredImage.altText}
           width="750"
           height="1000"
         />
       </div>
     </div>
-    <div class="review-intro-header">
-      <div class="review-intro-header-stats">
-        <div class="review-intro-header-stats-abv">
-          <Headline
-            ele="p"
-            hlstyle="four"
-            classes="review-intro-header-stats-abv-content"
-            >{data.reviewsContent.stats.abv}&#37; Abv</Headline
-          >
-        </div>
-        <div class="review-intro-header-stats-filtered">
-          <div>
-            <Image src={filtered} alt={"Non-Chilled Filtered"} />
-          </div>
-        </div>
-        <div class="review-intro-header-stats-colour">
-          <div>
-            <Image src={coloured} alt={"No Colour Added"} />
-          </div>
-        </div>
-      </div>
-      <Headline ele="h1" hlstyle="three" classes="review-intro-header-title"
-        >{data.title},<span>{whiskeyRegions}, {whiskyTypes}</span></Headline
+    <div class="post-intro-header">
+      <Headline ele="h1" hlstyle="three" classes="post-intro-header-title"
+        >{data.title}</Headline
       >
       <div
-        set:html={data.reviewsContent.description}
-        class="review-intro-header-description"
+        set:html={data.postsComponents.introQuote}
+        class="post-intro-header-description"
       />
     </div>
   </Wrappper>

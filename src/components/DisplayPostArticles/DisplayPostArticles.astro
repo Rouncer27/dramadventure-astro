@@ -1,0 +1,16 @@
+---
+import "./displayPostArticles.scss";
+import PostCard from "./PostCard.astro";
+import Wrapper from "../shared/Wrapper.astro";
+const { data, posts } = Astro.props;
+---
+
+<div class="reviews">
+  <Wrapper wrapType="med">
+    {
+      posts.map((post) => {
+        return <PostCard post={post} />;
+      })
+    }
+  </Wrapper>
+</div>
