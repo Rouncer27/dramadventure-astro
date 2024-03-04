@@ -39,8 +39,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   },
   body: JSON.stringify({
     query: `
-    query reviewsQuery {
-        spritReview(idType: SLUG, id: "12-year-old-kilkerran") {
+    query reviewsQuery($id: ID!) {
+        spritReview(idType: SLUG, id: $id) {
                 date
                 title
                 reviewsContent {
@@ -91,7 +91,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
         }
     `,
     variables: {
-      uri: Astro.params["slug"],
+      id: Astro.params["slug"],
     },
   }),
 });
@@ -99,8 +99,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const {
   data: { spritReview, acfOptionsSiteWideSettings },
 } = await response.json();
-
-console.log("spritReview", spritReview);
 ---
 
 <Layout>
