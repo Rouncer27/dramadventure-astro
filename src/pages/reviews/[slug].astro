@@ -42,6 +42,42 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
         spritReview(idType: SLUG, id: "12-year-old-kilkerran") {
                 date
                 title
+                reviewsContent {
+                    adventureWorthy
+                    articleExcerpt
+                    description
+                    mainArticleReview
+                    featuredImage {
+                        sourceUrl
+                        altText
+                    }
+                    reviewArticleImage {
+                        sourceUrl
+                        altText
+                    }
+                    reviewScore {
+                        adventureWorthy
+                        fieldGroupName
+                        score
+                    }
+                    stats {
+                        abv
+                        naturalColour
+                        fieldGroupName
+                        nonChillFiltered
+                    }
+                }
+                whiskyTypes {
+                    nodes {
+                        name
+                    }   
+                }
+
+                whiskeyRegions {
+                    nodes {
+                        name
+                    }
+                }
             }
 
         acfOptionsSiteWideSettings {
@@ -71,5 +107,5 @@ console.log("spritReview", spritReview);
     data={acfOptionsSiteWideSettings.siteWideSettings
       .reviewsArticlesInsideHeroImage}
   />
-  <Intro />
+  <Intro data={spritReview} />
 </Layout>

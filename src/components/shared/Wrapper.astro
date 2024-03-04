@@ -1,7 +1,7 @@
 ---
-const { wrapType, modifier } = Astro.props;
+const { wrapType, classes, modifier } = Astro.props;
 ---
 
-<div class={`wrap-${wrapType} ${modifier}`}>
+<div class:list={[`wrap-${wrapType}`, classes, modifier]}>
   <slot />
 </div>
