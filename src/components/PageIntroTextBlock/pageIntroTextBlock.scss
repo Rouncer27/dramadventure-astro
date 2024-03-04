@@ -1,0 +1,32 @@
+@use "../../style//abstracts/" as *;
+@use "../../style/global/paragraphs";
+
+.page-intro {
+  width: 100%;
+  padding-top: 23.5rem;
+
+  &-title {
+    width: calc(33.333333%);
+
+    &-mod {
+      margin: 0;
+    }
+  }
+
+  &-content {
+    width: calc(66.666666% - 8.5rem);
+    margin-left: 8.5rem;
+
+    p {
+      @extend .p-one;
+    }
+  }
+
+  &.bg-black {
+    background-color: $primaryColor;
+
+    * {
+      color: $whiteColor;
+    }
+  }
+}

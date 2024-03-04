@@ -1,0 +1,17 @@
+---
+import "./pageIntroTextBlock.scss";
+import Wrapper from "../shared/Wrapper.astro";
+import Headline from "../shared/Headline.astro";
+const { data } = Astro.props;
+---
+
+<div class={`page-intro bg-${data.backgroundColor}`}>
+  <Wrapper>
+    <div class="page-intro-title">
+      <Headline classes="page-intro-title-mod" hlstyle="three"
+        >{data.title}</Headline
+      >
+    </div>
+    <div class="page-intro-content" set:html={data.introContent} />
+  </Wrapper>
+</div>

@@ -63,6 +63,9 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
           title
           pageComponents {
             components {
+
+
+              
               ... on Page_Pagecomponents_Components_Hero {
                 fieldGroupName
                 heroContent {
@@ -280,6 +283,14 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
               ... on Page_Pagecomponents_Components_DisplayPostArticles {
                 fieldGroupName
                 displayPostArticles
+              }
+
+              
+              ... on Page_Pagecomponents_Components_PageIntroTextBlock {
+                backgroundColor
+                fieldGroupName
+                title
+                introContent
               }
 
 
