@@ -2,17 +2,12 @@
 import "./intro.scss";
 import Wrappper from "../../shared/Wrapper.astro";
 import Headline from "../../shared/Headline.astro";
-import Paragraph from "../../shared/Paragraph.astro";
 import { Image } from "astro:assets";
 import filtered from "../../../assets/icons/badges-non-chill-filtered.png";
 import coloured from "../../../assets/icons/badges-no-colour.png";
 const { data } = Astro.props;
-
 const whiskeyRegions = data.whiskeyRegions.nodes[0].name;
 const whiskyTypes = data.whiskyTypes.nodes[0].name;
-
-console.log("filtered", filtered);
-console.log("coloured", coloured);
 ---
 
 <div class="review-intro">
