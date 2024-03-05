@@ -22,15 +22,25 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 fieldGroupName
               }
               menuItems {
+
                 menuItem {
-                label
-                destination {
-                  ... on Page {
-                    link
+                  label
+                  destination {
+                    ... on Page {
+                      link
+                    }
+                  }
+                }
+                subMenuItems {
+                  label
+                  destination {
+                    ... on Page {
+                      id
+                      link
+                    }
+                  }
                 }
               }
-            }
-          }
         }   
       }
     }
@@ -55,7 +65,7 @@ if (callToActionButton) {
     <div class="navigation-drawer">
       <ul>
         {
-          menuItems.map(({ menuItem }) => {
+          menuItems.map(({ menuItem, subMenuItems }) => {
             const href = replaceUrls(
               menuItem.destination.link,
               Astro.url.origin,
@@ -65,6 +75,21 @@ if (callToActionButton) {
                 <a class="p-two" href={href}>
                   {menuItem.label}
                 </a>
+                {subMenuItems && (
+                  <ul class="sub-menu">
+                    {subMenuItems.map((sitem) => {
+                      const href = replaceUrls(
+                        sitem.destination.link,
+                        Astro.url.origin,
+                      );
+                      return (
+                        <li>
+                          <a href={href}>{sitem.label}</a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </li>
             );
           })
