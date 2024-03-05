@@ -1,0 +1,99 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+      query whiskeyOriginsQuery {
+        whiskeyOrigins(first: 999999) {
+                nodes {
+                    slug
+                    uri
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+
+  const origins = data?.whiskeyOrigins?.nodes;
+
+  return origins.map((origin, index) => {
+    return {
+      params: { slug: origin.slug },
+      props: {
+        uri: origin.uri,
+        next: index === 0 ? null : origins[index - 1].slug,
+        prev: index === origins.length - 1 ? null : origins[index + 1].slug,
+      },
+    };
+  });
+}
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query PageQuery($uri: String!) {
+      nodeByUri(uri: $uri) {
+        ... on WhiskeyOrigin {
+          id
+          name
+          whiskies {
+            nodes {
+              title
+              slug
+            }
+          }
+        }
+      }
+    }
+        
+    `,
+    variables: {
+      uri: Astro.props["uri"],
+    },
+  }),
+});
+
+const { data } = await response.json();
+console.log("data", data.nodeByUri.whiskies);
+const {
+  whiskies: { nodes: whiskies },
+} = data.nodeByUri;
+
+console.log("whiskies", whiskies);
+---
+
+<Layout>
+  <div>
+    <h1>Whisky Origins</h1>
+    <div>
+      {
+        whiskies.map((whisky) => {
+          return (
+            <p>
+              <a href={`/whiskies/${whisky.slug}`}>{whisky.title}</a>
+            </p>
+          );
+        })
+      }
+    </div>
+  </div>
+</Layout>
+
+<style>
+  div {
+    padding-top: 30rem;
+  }
+</style>
