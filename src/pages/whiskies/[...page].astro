@@ -27,6 +27,25 @@ export async function getStaticPaths({ paginate }) {
   return paginate(allWhiskies, { pageSize: 3 });
 }
 
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+      query whiskiesPageQuery {
+        page(id: "whiskies", idType: URI) {
+          title
+        }
+      }
+    `,
+  }),
+});
+const {
+  data: { page: whiskyPage },
+} = await response.json();
+
 const { page } = Astro.props;
 
 console.log("page", page);
@@ -35,7 +54,7 @@ console.log("page", page);
 <Layout>
   <div>
     <div>
-      <h1>All Whiskies</h1>
+      <h1>{whiskyPage.title}</h1>
       {
         page.data.map((whisky) => (
           <p>
