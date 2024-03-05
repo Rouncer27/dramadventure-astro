@@ -39,7 +39,7 @@ console.log("page", page);
       {
         page.data.map((whisky) => (
           <p>
-            <a href={`${whisky.slug}`}>{whisky.title}</a>
+            <a href={`/whiskies/${whisky.slug}`}>{whisky.title}</a>
           </p>
         ))
       }
