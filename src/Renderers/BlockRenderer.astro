@@ -17,6 +17,7 @@ import ContactForm from "../components/ContactForm/ContactForm.astro";
 import JustImages from "../components/JustImages/JustImages.astro";
 import DisplayReviews from "../components/DisplayReviews/DisplayReviews.astro";
 import DisplayPostArticles from "../components/DisplayPostArticles/DisplayPostArticles.astro";
+import DisplayPodcastEpisodes from "../components/DisplayPodcastEpisodes/DisplayPodcastEpisodes.astro";
 import PageIntroTextBlock from "../components/PageIntroTextBlock/PageIntroTextBlock.astro";
 const { blocks, reviews, posts } = Astro.props;
 ---
@@ -77,6 +78,9 @@ const { blocks, reviews, posts } = Astro.props;
 
       case "Page_Pagecomponents_Components_DisplayPostArticles":
         return <DisplayPostArticles data={block} posts={posts} />;
+
+      case "Page_Pagecomponents_Components_DisplayPodcastEpisodes":
+        return <DisplayPodcastEpisodes data={block} />;
 
       case "Page_Pagecomponents_Components_PageIntroTextBlock":
         return <PageIntroTextBlock data={block} />;

@@ -285,6 +285,13 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 displayPostArticles
               }
 
+
+
+              ... on Page_Pagecomponents_Components_DisplayPodcastEpisodes {
+                fieldGroupName
+                displayPodcastEpisodes
+              }
+
               
               ... on Page_Pagecomponents_Components_PageIntroTextBlock {
                 backgroundColor
