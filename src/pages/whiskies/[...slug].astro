@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+      query whiskiesQuery {
+          whiskies(first: 999999) {
+                nodes {
+                    title
+                    slug
+                    uri
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+
+  const whiskies = data.whiskies.nodes;
+
+  return whiskies.map((whisky, index) => {
+    return {
+      params: { slug: `${whisky.slug}` },
+      props: {
+        next: index === 0 ? null : whiskies[index - 1].slug,
+        prev: index === whiskies.length - 1 ? null : whiskies[index + 1].slug,
+      },
+    };
+  });
+}
+
+console.log("Astro", Astro);
+---
+
+<Layout>
+  <div>
+    <h1>Single Whisky</h1>
+  </div>
+</Layout>
+
+<style>
+  div {
+    padding-top: 30rem;
+  }
+</style>

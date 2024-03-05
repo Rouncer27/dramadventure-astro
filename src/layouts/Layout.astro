@@ -2,7 +2,7 @@
 import Header from "./Header.astro";
 import Footer from "./Footer/Footer.astro";
 import "../style/style.scss";
-const { seoImage, seoData } = Astro.props;
+const { seoImage = null, seoData } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,7 +16,7 @@ const { seoImage, seoData } = Astro.props;
     <!-- SEO -->
     <title>{seoData?.title}</title>
     <!-- <meta name="description" content={seoData.metaDesc} />
-    <meta name="image" content={seoImage} />
+    <meta name="image" content={seoImage} /> -->
 
     <!-- OpenGraph Tags -->
     <!-- <meta property="og:type" content="website" />

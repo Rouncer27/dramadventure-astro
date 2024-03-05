@@ -25,9 +25,16 @@ export async function getStaticPaths() {
 
   const { data } = await response.json();
 
-  return data.spritsReviews.nodes.map((review) => {
+  const allReviews = data.spritsReviews.nodes;
+
+  return allReviews.map((review, index) => {
     return {
       params: { slug: `${review.slug}` },
+      props: {
+        next: index === 0 ? null : allReviews[index - 1].slug,
+        prev:
+          index === allReviews.length - 1 ? null : allReviews[index + 1].slug,
+      },
     };
   });
 }
@@ -99,6 +106,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const {
   data: { spritReview, acfOptionsSiteWideSettings },
 } = await response.json();
+
+console.log("Astro.props", Astro.props);
 ---
 
 <Layout>
