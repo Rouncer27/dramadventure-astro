@@ -1,0 +1,26 @@
+---
+import "./pagination.scss";
+import Wrapper from "../shared/Wrapper.astro";
+const { page, baseSlug } = Astro.props;
+---
+
+<div class="pagination">
+  <Wrapper>
+    <nav aria-label="navigation">
+      {
+        page.url.prev && (
+          <a class="btn" href={`${page.url.prev}`}>
+            Prev
+          </a>
+        )
+      }
+      {
+        page.url.next && (
+          <a class="btn" href={`${page.url.next}`}>
+            Next
+          </a>
+        )
+      }
+    </nav>
+  </Wrapper>
+</div>

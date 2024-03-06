@@ -1,6 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeroWhiskies from "../../components/HeroWhiskies/HeroWhiskies.astro";
+import WhiskyCard from "../../components/WhiskyCard/WhiskyCard.astro";
+import Pagination from "../../components/Pagination/Pagination.astro";
 
 export async function getStaticPaths({ paginate }) {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -13,9 +15,33 @@ export async function getStaticPaths({ paginate }) {
         query whiskiesQuery {
           whiskies(first: 999999) {
                 nodes {
-                    title
-                    slug
-                    uri
+                  title
+                  slug
+                  uri
+                  whiskyContent {
+                    featuredImage {
+                      altText
+                      sourceUrl
+                    }
+                  }
+                  whiskeyOrigins {
+                    nodes {
+                      slug
+                      name
+                    }
+                  }
+                  whiskeyRegions {
+                    nodes {
+                      slug
+                      name
+                    }
+                  }
+                  whiskyTypes {
+                    nodes {
+                      slug
+                      name
+                    }
+                  }
                 }
             }
         }
@@ -57,27 +83,10 @@ const {
 } = await response.json();
 
 const { page } = Astro.props;
-
-console.log("whiskiesPage", whiskiesPage);
 ---
 
 <Layout>
   <HeroWhiskies data={whiskiesPage} />
-  <div>
-    <div>
-      <h1>Main Whiskey page</h1>
-      {
-        page.data.map((whisky) => (
-          <p>
-            <a href={`/whiskies/${whisky.slug}`}>{whisky.title}</a>
-          </p>
-        ))
-      }
-    </div>
-
-    <nav aria-label="Whiskies">
-      {page.url.prev && <a href={`${page.url.prev}`}>Prev</a>}
-      {page.url.next && <a href={`${page.url.next}`}>Next</a>}
-    </nav>
-  </div>
+  <WhiskyCard page={page} baseSlug="/whiskies" />
+  <Pagination page={page} />
 </Layout>

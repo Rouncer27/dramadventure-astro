@@ -1,0 +1,36 @@
+.whiskies {
+  margin-top: 2rem;
+
+  &-wrapper {
+    width: 100%;
+  }
+
+  .whisky {
+    width: calc((100% / 4) - 2rem);
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0.25rem 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.4);
+
+    &-image {
+      width: 100%;
+      margin: auto;
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    &-content {
+      width: 100%;
+      text-align: center;
+
+      &-title {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
