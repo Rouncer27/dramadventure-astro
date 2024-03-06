@@ -33,6 +33,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 }
                 subMenuItems {
                   label
+                  linkType
+                  slug
                   destination {
                     ... on Page {
                       id
@@ -78,15 +80,25 @@ if (callToActionButton) {
                 {subMenuItems && (
                   <ul class="sub-menu">
                     {subMenuItems.map((sitem) => {
-                      const href = replaceUrls(
-                        sitem.destination.link,
-                        Astro.url.origin,
-                      );
-                      return (
-                        <li>
-                          <a href={href}>{sitem.label}</a>
-                        </li>
-                      );
+                      const linkType = sitem.linkType;
+
+                      if (linkType === "page") {
+                        const href = replaceUrls(
+                          sitem.destination.link,
+                          Astro.url.origin,
+                        );
+                        return (
+                          <li>
+                            <a href={href}>{sitem.label}</a>
+                          </li>
+                        );
+                      } else if (linkType === "custom") {
+                        return (
+                          <li>
+                            <a href={`/${sitem.slug}`}>{sitem.label}</a>
+                          </li>
+                        );
+                      }
                     })}
                   </ul>
                 )}
