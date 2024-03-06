@@ -35,8 +35,10 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   body: JSON.stringify({
     query: `
       query whiskiesPageQuery {
-        page(id: "whiskies", idType: URI) {
-          title
+        nodeByUri(uri: "whiskies") {
+          ... on Page {
+            title
+          }
         }
       }
     `,
@@ -52,7 +54,7 @@ const { page } = Astro.props;
 <Layout>
   <div>
     <div>
-      <h1>{whiskyPage.title}</h1>
+      <h1>Main Whiskey page</h1>
       {
         page.data.map((whisky) => (
           <p>
