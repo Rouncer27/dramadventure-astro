@@ -1,0 +1,5 @@
+# Optional: Redirect default Netlify subdomain to primary domain
+
+https://dram.netlify.app/* https://dramadventure.com/:splat 301!
+
+/about-us/ /about
