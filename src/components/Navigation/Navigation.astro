@@ -65,7 +65,7 @@ if (callToActionButton) {
 <div class="main-nav">
   <nav class="main-navigation">
     <div class="navigation-drawer">
-      <ul>
+      <ul class="main-menu-wrapper">
         {
           menuItems.map(({ menuItem, subMenuItems }) => {
             const href = replaceUrls(
@@ -73,7 +73,7 @@ if (callToActionButton) {
               Astro.url.origin,
             );
             return (
-              <li>
+              <li class="main-menu-primary">
                 <a class="p-two" href={href}>
                   {menuItem.label}
                 </a>
@@ -89,13 +89,17 @@ if (callToActionButton) {
                         );
                         return (
                           <li>
-                            <a href={href}>{sitem.label}</a>
+                            <a class="p-two" href={href}>
+                              {sitem.label}
+                            </a>
                           </li>
                         );
                       } else if (linkType === "custom") {
                         return (
                           <li>
-                            <a href={`/${sitem.slug}`}>{sitem.label}</a>
+                            <a class="p-two" href={`/${sitem.slug}`}>
+                              {sitem.label}
+                            </a>
                           </li>
                         );
                       }

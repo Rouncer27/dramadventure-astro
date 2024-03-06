@@ -70,6 +70,7 @@
     }
 
     li {
+      position: relative;
       margin: 0 0.5rem;
 
       @media (min-width: 768px) {
@@ -89,6 +90,41 @@
       &.cta {
         a {
           color: colors.$whiteColor;
+        }
+      }
+    }
+
+    .sub-menu {
+      position: absolute;
+      top: 100%;
+      left: -2rem;
+      width: 25rem;
+      visibility: hidden;
+      padding: 2.5rem 0.5rem;
+      background-color: colors.$primaryColor;
+      opacity: 0;
+      transition: all 0.3s ease;
+      text-align: center;
+
+      li {
+        width: 100%;
+
+        a {
+          width: 100%;
+          color: colors.$creamColor;
+
+          &:hover {
+            color: colors.$accentColor;
+          }
+        }
+      }
+    }
+
+    .main-menu-wrapper {
+      .main-menu-primary {
+        &:hover > .sub-menu {
+          visibility: visible;
+          opacity: 1;
         }
       }
     }
