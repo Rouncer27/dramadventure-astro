@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import "./heroWhiskies.scss";
+const { data } = Astro.props;
+---
+
+<div class="herov3">
+  <div class="herov3-content">
+    <div class="herov3-content-title">
+      <h1 class="hl-one hl-white">{data.heroTitleTop}</h1>
+      <h3 class="hl-three hl-white">{data.heroTitleBottom}</h3>
+    </div>
+  </div>
+  <div class="herov3-image">
+    <Image
+      src={data.heroImage.sourceUrl}
+      alt="The Repo Room"
+      width={2500}
+      height={2500}
+    />
+  </div>
+</div>
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tigger = document.querySelector(".herov3");
+  const quote = document.querySelector(".herov3-content-title h1");
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: tigger,
+        markers: false,
+        start: "top 40%",
+        scrub: false,
+      },
+    })
+    .fromTo(
+      quote,
+      { autoAlpha: 0, x: 100 },
+      { autoAlpha: 1, ease: "power2.out", duration: 1.5, x: 0 },
+    );
+</script>

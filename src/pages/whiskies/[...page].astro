@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import HeroWhiskies from "../../components/HeroWhiskies/HeroWhiskies.astro";
 
 export async function getStaticPaths({ paginate }) {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -35,9 +36,14 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   body: JSON.stringify({
     query: `
       query whiskiesPageQuery {
-        nodeByUri(uri: "whiskies") {
-          ... on Page {
-            title
+        acfOptionsWhiskiesPage {
+          whiskiesPage {
+            heroTitleBottom
+            heroTitleTop
+            heroImage {
+              altText
+              sourceUrl
+            }
           }
         }
       }
@@ -45,13 +51,18 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   }),
 });
 const {
-  data: { page: whiskyPage },
+  data: {
+    acfOptionsWhiskiesPage: { whiskiesPage },
+  },
 } = await response.json();
 
 const { page } = Astro.props;
+
+console.log("whiskiesPage", whiskiesPage);
 ---
 
 <Layout>
+  <HeroWhiskies data={whiskiesPage} />
   <div>
     <div>
       <h1>Main Whiskey page</h1>
@@ -70,9 +81,3 @@ const { page } = Astro.props;
     </nav>
   </div>
 </Layout>
-
-<style>
-  div {
-    padding-top: 30rem;
-  }
-</style>
