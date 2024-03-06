@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-
+console.log("Hello World data");
 export async function getStaticPaths({ paginate }) {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     method: "POST",
@@ -23,49 +23,19 @@ export async function getStaticPaths({ paginate }) {
   });
 
   const { data } = await response.json();
+
   const allWhiskies = data.whiskies.nodes;
   return paginate(allWhiskies, { pageSize: 3 });
 }
 
-const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
-  method: "POST",
-  headers: {
-    "content-type": "application/json",
-  },
-  body: JSON.stringify({
-    query: `
-      query whiskiesPageQuery {
-        page(id: "whiskies", idType: URI) {
-          title
-        }
-      }
-    `,
-  }),
-});
-const {
-  data: { page: whiskyPage },
-} = await response.json();
-
 const { page } = Astro.props;
+
+console.log("page", page);
 ---
 
 <Layout>
   <div>
-    <div>
-      <h1>{whiskyPage.title}</h1>
-      {
-        page.data.map((whisky) => (
-          <p>
-            <a href={`/whiskies/${whisky.slug}`}>{whisky.title}</a>
-          </p>
-        ))
-      }
-    </div>
-
-    <nav aria-label="Whiskies">
-      {page.url.prev && <a href={`${page.url.prev}`}>Prev</a>}
-      {page.url.next && <a href={`${page.url.next}`}>Next</a>}
-    </nav>
+    <h1>The MAin Whiskies page</h1>
   </div>
 </Layout>
 
