@@ -1,3 +1,6 @@
+@use "../../style/abstracts/colors" as *;
+@use "../../style/global/paragraphs";
+
 .menu-sub-item {
   width: 100%;
   padding-left: 5rem;
@@ -5,6 +8,9 @@
   text-align: left;
 
   a {
+    @extend .p-one;
     padding: 1rem 2rem !important;
+    color: $shadowColor;
+    font-weight: bold;
   }
 }

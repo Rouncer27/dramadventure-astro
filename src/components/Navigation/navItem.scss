@@ -1,3 +1,6 @@
+@use "../../style/abstracts/colors" as *;
+@use "../../style/global/paragraphs";
+
 .menu-item {
   position: relative;
   width: 100%;
@@ -13,7 +16,7 @@
       background-color: transparent;
       font-size: 3rem;
       font-weight: bold;
-      // color: ${colors.black};
+      color: $accentColor;
       border: none;
       border-radius: 0 !important;
       line-height: 0;
@@ -30,20 +33,20 @@
   }
 
   a {
-    //   ${B3Black};
+    @extend .p-one;
     display: block;
     width: 100%;
     padding: 2rem;
     text-transform: uppercase;
 
     &:hover {
-      // color: ${colors.white};
-      // background-color: ${colors.colorSecondary};
+      color: $accentColor;
+      background-color: $whiteColor;
     }
 
     &[aria-current="page"] {
-      // color: ${colors.white};
-      // background-color: ${colors.colorSecondary};
+      color: $accentColor;
+      background-color: $whiteColor;
 
       &:hover {
         cursor: default;

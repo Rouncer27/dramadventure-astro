@@ -61,17 +61,6 @@ const NavDrawer = ({ isOpen, setIsOpen, setBtnChecked, origin }) => {
     <div className={`nav-drawer ${isOpen ? "active" : ""}`}>
       <div className="main-nav-wrapper">
         <div className="side-logo">
-          <div className="close-btn">
-            <button
-              onClick={() => {
-                setBtnChecked(false);
-                setIsOpen(false);
-              }}
-              type="button"
-            >
-              &#10005;
-            </button>
-          </div>
           <div></div>
         </div>
         <NavContainer navitems={menuItems} origin={origin} />

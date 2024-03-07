@@ -1,4 +1,5 @@
 import React from "react";
+import "./navSubItem.scss";
 
 const NavSubItem = ({ item, origin }) => {
   //   const slug = item.url

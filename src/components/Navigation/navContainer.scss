@@ -1,7 +1,9 @@
+@use "../../style/abstracts/colors" as *;
+
 .nav-container {
   display: block;
   width: 90%;
-  background-color: rgba(207, 221, 224, 0.94);
+  background-color: rgba($tertiaryColor, 0.94);
 
   ul.main-mobile-nav {
     display: flex;
