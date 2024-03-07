@@ -3,7 +3,6 @@ import NavSubMenu from "./NavSubMenu";
 import "./navItem.scss";
 
 const NavItem = ({ item }) => {
-  console.log("item", item);
   //   const slug = item.url
   //     .split("/")
   //     .filter((item) => item !== "")

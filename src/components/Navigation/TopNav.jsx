@@ -6,9 +6,6 @@ import NavDrawer from "./NavDrawer";
 const TopNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [btnChecked, setBtnChecked] = useState(false);
-
-  console.log("isOpen", isOpen);
-
   return (
     <div className="top-mobile-nav">
       <NavButton
