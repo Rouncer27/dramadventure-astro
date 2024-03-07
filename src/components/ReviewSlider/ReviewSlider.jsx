@@ -1,9 +1,39 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./reviewSlider.scss";
+
+const settings = {
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  fade: false,
+  draggable: true,
+  infinite: true,
+  speed: 500,
+  autoplay: true,
+  autoplaySpeed: 15000,
+  centerPadding: "200px",
+  centerMode: true,
+  arrows: false,
+  dots: true,
+  responsive: [
+    {
+      breakpoint: 1025,
+      settings: {
+        centerPadding: "0px",
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        centerPadding: "0px",
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
 
 const ReviewSlider = (props) => {
   return (
@@ -14,44 +44,30 @@ const ReviewSlider = (props) => {
             Notes From <span>The Trail</span>
           </h2>
         </div>
-        <Swiper
-          loop={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination, Navigation]}
-          className="mySwiper"
-          slidesPerView={1}
-          spaceBetween={25}
-          freeMode={true}
-          navigation={true}
-          breakpoints={{
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 40,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 65,
-            },
-          }}
-        >
-          {props.reviews.map((review, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <div className="slide-img">
-                  <img
-                    src={review.reviewsContent.featuredImage.sourceUrl}
-                    alt={review.title}
-                  />
+
+        {typeof Slider === "function" ? (
+          <Slider className="slider" {...settings}>
+            {props.reviews.map((review, index) => {
+              return (
+                <div key={index}>
+                  <div className="slide-img">
+                    <img
+                      src={review.reviewsContent.featuredImage.sourceUrl}
+                      alt={review.title}
+                    />
+                  </div>
+                  <div className="slide-title">
+                    <h3 className="hl-four hl-white">{review.title}</h3>
+                  </div>
                 </div>
-                <div className="slide-title">
-                  <h3 className="hl-four hl-white">{review.title}</h3>
-                </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+              );
+            })}
+          </Slider>
+        ) : null}
+
+        {/* <Slider> */}
+
+        {/* </Slider> */}
       </div>
     </div>
   );

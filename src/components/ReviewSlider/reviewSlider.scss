@@ -69,7 +69,7 @@
       }
     }
 
-    .mySwiper {
+    .slider {
       width: 100%;
 
       @media (min-width: 768px) {
@@ -81,9 +81,13 @@
         align-items: flex-start;
       }
 
-      .swiper-slide {
+      .slick-slide {
         display: flex;
         flex-wrap: wrap;
+
+        div {
+          width: 100%;
+        }
 
         .slide-img {
           position: relative;
