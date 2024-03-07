@@ -56,7 +56,7 @@ const response = await fetch(`https://dramadventure.swbdatabases2.ca/graphql`, {
 const { data } = await response.json();
 const { menuItems, callToActionButton } = data.mainMenu.mainMenu;
 
-const NavDrawer = ({ isOpen, setIsOpen, setBtnChecked }) => {
+const NavDrawer = ({ isOpen, setIsOpen, setBtnChecked, origin }) => {
   return (
     <div className={`nav-drawer ${isOpen ? "active" : ""}`}>
       <div className="main-nav-wrapper">
@@ -74,7 +74,7 @@ const NavDrawer = ({ isOpen, setIsOpen, setBtnChecked }) => {
           </div>
           <div></div>
         </div>
-        <NavContainer navitems={menuItems} />
+        <NavContainer navitems={menuItems} origin={origin} />
       </div>
     </div>
   );

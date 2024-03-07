@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavSubItem = ({ item }) => {
+const NavSubItem = ({ item, origin }) => {
   //   const slug = item.url
   //     .split("/")
   //     .filter(item => item !== "")
@@ -10,7 +10,7 @@ const NavSubItem = ({ item }) => {
 
   return (
     <li className="menu-sub-item">
-      <a href={`/${item.slug}`}>{item.label}</a>
+      <a href={`${origin}/${item.slug}`}>{item.label}</a>
     </li>
   );
 };

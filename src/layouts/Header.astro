@@ -27,8 +27,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const { data } = await response.json();
-
-console.log("HERE TREVOR", Astro.url.origin);
 ---
 
 <header>
@@ -48,7 +46,6 @@ console.log("HERE TREVOR", Astro.url.origin);
       <div class="main-logo__graphic"></div>
     </div>
     <Navigation />
-    <TopNav client:load />
-    {(<p>{Astro.url.origin}</p>)}
+    <TopNav client:load origin={Astro.url.origin} />
   </div>
 </header>

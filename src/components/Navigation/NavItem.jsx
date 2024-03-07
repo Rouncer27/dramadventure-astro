@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavSubMenu from "./NavSubMenu";
 import "./navItem.scss";
 
-const NavItem = ({ item }) => {
+const NavItem = ({ item, origin }) => {
   //   const slug = item.url
   //     .split("/")
   //     .filter((item) => item !== "")
@@ -16,7 +16,9 @@ const NavItem = ({ item }) => {
 
   return (
     <li className="menu-item">
-      <a href={item.menuItem.destination.uri}>{item.menuItem.label}</a>
+      <a href={`${origin}${item.menuItem.destination.uri}`}>
+        {item.menuItem.label}
+      </a>
       {item.subMenuItems && (
         <div className="sub-wrap">
           <button
@@ -27,7 +29,11 @@ const NavItem = ({ item }) => {
             {subActive ? <>&#8722;</> : <>&#43;</>}
           </button>
           <div className="subContainer">
-            <NavSubMenu subActive={subActive} items={item.subMenuItems} />
+            <NavSubMenu
+              subActive={subActive}
+              items={item.subMenuItems}
+              origin={origin}
+            />
           </div>
         </div>
       )}

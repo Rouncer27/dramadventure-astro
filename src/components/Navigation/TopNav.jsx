@@ -3,7 +3,7 @@ import NavButton from "./NavButton";
 import "./topNav.scss";
 import NavDrawer from "./NavDrawer";
 
-const TopNav = () => {
+const TopNav = ({ origin }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [btnChecked, setBtnChecked] = useState(false);
   return (
@@ -17,6 +17,7 @@ const TopNav = () => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         setBtnChecked={setBtnChecked}
+        origin={origin}
       />
       {/* {!!isOpen && <BlurBackground />} */}
     </div>
