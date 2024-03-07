@@ -23,8 +23,8 @@ const { data } = Astro.props;
     <Image
       src={data.heroImage.sourceUrl}
       alt="The Repo Room"
-      width={2500}
-      height={2500 / 2}
+      width={2000}
+      height={2000 / 2}
       loading="eager"
     />
   </div>
@@ -34,6 +34,4 @@ const { data } = Astro.props;
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
-
-  console.log("HELLO HERO THERE!");
 </script>
