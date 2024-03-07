@@ -1,0 +1,53 @@
+.menu-item {
+  position: relative;
+  width: 100%;
+
+  .sub-wrap {
+    button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 7.5rem;
+      height: 100%;
+      background-color: transparent;
+      font-size: 3rem;
+      font-weight: bold;
+      // color: ${colors.black};
+      border: none;
+      border-radius: 0 !important;
+      line-height: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .subContainer {
+    width: 100%;
+    height: 100%;
+  }
+
+  a {
+    //   ${B3Black};
+    display: block;
+    width: 100%;
+    padding: 2rem;
+    text-transform: uppercase;
+
+    &:hover {
+      // color: ${colors.white};
+      // background-color: ${colors.colorSecondary};
+    }
+
+    &[aria-current="page"] {
+      // color: ${colors.white};
+      // background-color: ${colors.colorSecondary};
+
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+}
