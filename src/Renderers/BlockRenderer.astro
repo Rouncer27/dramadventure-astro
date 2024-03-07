@@ -38,7 +38,9 @@ const { blocks, reviews, posts } = Astro.props;
         return <HeroQuote data={block} />;
 
       case "Page_Pagecomponents_Components_ReviewSlider":
-        return <ReviewSlider client:load data={block} reviews={reviews} />;
+        return (
+          <ReviewSlider client:only="react" data={block} reviews={reviews} />
+        );
 
       case "Page_Pagecomponents_Components_ThreeBlocks":
         return <ThreeBlocks data={block} />;

@@ -45,29 +45,24 @@ const ReviewSlider = (props) => {
           </h2>
         </div>
 
-        {typeof Slider === "function" ? (
-          <Slider className="slider" {...settings}>
-            {props.reviews.map((review, index) => {
-              return (
-                <div key={index}>
-                  <div className="slide-img">
-                    <img
-                      src={review.reviewsContent.featuredImage.sourceUrl}
-                      alt={review.title}
-                    />
-                  </div>
-                  <div className="slide-title">
-                    <h3 className="hl-four hl-white">{review.title}</h3>
-                  </div>
+        <Slider className="slider" {...settings}>
+          {props.reviews.map((review, index) => {
+            return (
+              <div key={index}>
+                <div className="slide-img">
+                  <img
+                    src={review.reviewsContent.featuredImage.sourceUrl}
+                    alt={review.title}
+                  />
                 </div>
-              );
-            })}
-          </Slider>
-        ) : null}
-
-        {/* <Slider> */}
-
-        {/* </Slider> */}
+                <div className="slide-title">
+                  <h3 className="hl-four hl-white">{review.title}</h3>
+                </div>
+              </div>
+            );
+          })}
+        </Slider>
+        {/* {typeof Slider === "function" ? () : null} */}
       </div>
     </div>
   );
