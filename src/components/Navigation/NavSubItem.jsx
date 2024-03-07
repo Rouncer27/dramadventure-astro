@@ -9,7 +9,7 @@ const NavSubItem = ({ item }) => {
   const slug = "";
 
   return (
-    <li class="menu-sub-item">
+    <li className="menu-sub-item">
       <a href={`/${item.slug}`}>{item.label}</a>
     </li>
   );

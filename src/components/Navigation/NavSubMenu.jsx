@@ -5,8 +5,8 @@ import NavSubItem from "./NavSubItem";
 const NavSubMenu = ({ subActive, items }) => {
   return (
     <ul className={`sub-menu ${subActive ? "sub-active" : ""}`}>
-      {items.map((item) => (
-        <NavSubItem key={item.id} item={item} />
+      {items.map((item, index) => (
+        <NavSubItem key={index} item={item} />
       ))}
     </ul>
   );
