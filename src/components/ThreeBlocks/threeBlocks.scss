@@ -11,10 +11,10 @@
   &-image-one,
   &-image-two {
     width: calc(100%);
-    min-height: 30rem;
+    min-height: 40rem;
     position: relative;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1000px) {
       width: calc(100% / 3);
       min-height: 75rem;
     }
@@ -35,15 +35,21 @@
     align-items: center;
     flex-direction: column;
     width: calc(100%);
-    padding: 2rem;
+    padding: 4rem 2rem;
     background-color: abstracts.$creamColor;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1000px) {
       width: calc(100% / 3);
+      padding: 2rem;
     }
 
     &--logo {
       width: 100%;
+      margin-bottom: 4rem;
+
+      @media (min-width: 1000px) {
+        margin-bottom: 0;
+      }
 
       &--wrap {
         max-width: 13.7rem;

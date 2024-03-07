@@ -2,11 +2,13 @@
 
 .latest-posts {
   background-color: abstracts.$primaryColor;
+  padding-top: 2.5rem;
   padding-bottom: 15rem;
 
   &-title {
     width: 100%;
     text-align: center;
+    margin-bottom: 4rem;
   }
 
   &-display {
