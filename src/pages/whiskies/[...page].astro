@@ -51,7 +51,7 @@ export async function getStaticPaths({ paginate }) {
 
   const { data } = await response.json();
   const allWhiskies = data.whiskies.nodes;
-  return paginate(allWhiskies, { pageSize: 3 });
+  return paginate(allWhiskies, { pageSize: 8 });
 }
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {

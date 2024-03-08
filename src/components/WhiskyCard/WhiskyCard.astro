@@ -5,15 +5,13 @@ import Headline from "../shared/Headline.astro";
 import { Image } from "astro:assets";
 
 const { page, baseSlug } = Astro.props;
-
-console.log("page", page.data);
 ---
 
 <div class="whiskies">
   <Wrapper>
     {
       page.data.map((pageItem) => {
-        console.log("pageItem: ", pageItem);
+        console.log("pageItem: ", pageItem.whiskeyRegions.nodes);
         return (
           <div class="whisky">
             <div class="whisky-image">
@@ -25,9 +23,26 @@ console.log("page", page.data);
               />
             </div>
             <div class="whisky-content">
-              <Headline tag="h3" hlstyle="three" classes="whisky-content-title">
+              <Headline tag="h3" hlstyle="five" classes="whisky-content-title">
                 <a href={`${baseSlug}/${pageItem.slug}`}>{pageItem.title}</a>
               </Headline>
+            </div>
+            <div class="whisky-tags">
+              <div class="whisky-origins">
+                {pageItem.whiskeyOrigins.nodes.map((origin) => {
+                  return <p>{origin.name}</p>;
+                })}
+              </div>
+              <div class="whisky-regions">
+                {pageItem.whiskeyRegions.nodes.map((region) => {
+                  return <p>{region.name}</p>;
+                })}
+              </div>
+              <div class="whisky-types">
+                {pageItem.whiskyTypes.nodes.map((type) => {
+                  return <p>{type.name}</p>;
+                })}
+              </div>
             </div>
           </div>
         );

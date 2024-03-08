@@ -40,6 +40,14 @@
   line-height: 1.27;
 }
 
+.hl-five {
+  @include utils.font-sizer(1.6, 1.8, 76.8, 150, 1.6);
+  @extend .headline-all;
+  font-family: abstracts.$secondaryFont;
+  line-height: 1.27;
+  color: abstracts.$blackColor;
+}
+
 .hl-white {
   color: abstracts.$creamColor;
 }
