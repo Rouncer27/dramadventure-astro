@@ -12,6 +12,7 @@
       display: flex;
       width: 100%;
       margin-bottom: 5rem;
+      text-transform: uppercase;
 
       @media (min-width: 768px) {
         width: 20%;
@@ -21,9 +22,13 @@
       &__content {
         position: relative;
         width: 100%;
+        padding-top: 5rem;
         text-align: center;
 
         @media (min-width: 768px) {
+          text-align: right;
+          padding-top: 0;
+          padding-bottom: 15rem;
           writing-mode: vertical-rl;
           transform: rotate(180deg);
         }
@@ -32,13 +37,14 @@
         &::after {
           position: absolute;
           left: 0rem;
-          width: 100%;
-          height: 0.25rem;
+          width: 10rem;
+          height: 0.2rem;
           background-color: abstracts.$creamColor;
           content: "";
         }
 
         &::before {
+          display: none;
           top: 100%;
         }
 
@@ -49,17 +55,32 @@
         @media (min-width: 768px) {
           &::before,
           &::after {
-            left: 8rem;
+            display: block;
+            left: 50%;
           }
 
           &::before {
-            top: 80%;
+            top: 90%;
             transform: rotate(90deg);
           }
 
           &::after {
-            top: 20%;
+            top: 30%;
             transform: rotate(-90deg);
+          }
+        }
+
+        @media (min-width: 1025px) {
+          &::before,
+          &::after {
+            left: 55%;
+          }
+        }
+
+        @media (min-width: 1200px) {
+          &::before,
+          &::after {
+            left: 60%;
           }
         }
 
@@ -71,19 +92,61 @@
 
     .slider {
       width: 100%;
+      margin-bottom: 2rem;
 
       @media (min-width: 768px) {
         width: 80%;
+        margin-bottom: 0;
       }
 
-      .swiper-wrapper {
-        display: flex;
-        align-items: flex-start;
+      .slick-arrow {
+        top: 90%;
+
+        @media (min-width: 768px) {
+          top: 77.5%;
+        }
+
+        &.slick-prev {
+          left: calc(50% - 3rem);
+
+          @media (min-width: 768px) {
+            left: -13rem;
+          }
+
+          @media (min-width: 1025px) {
+            left: -22rem;
+          }
+
+          &::before {
+            font-size: 7rem;
+            font-family: "Montserrat", sans-serif;
+            content: "\2039";
+          }
+        }
+
+        &.slick-next {
+          left: calc(50% + 1rem);
+
+          @media (min-width: 768px) {
+            left: -10rem;
+          }
+
+          @media (min-width: 1025px) {
+            left: -18rem;
+          }
+
+          &::before {
+            font-size: 7rem;
+            font-family: "Montserrat", sans-serif;
+            content: "\203A";
+          }
+        }
       }
 
       .slick-slide {
         display: flex;
         flex-wrap: wrap;
+        padding: 5rem 0;
 
         div {
           width: 100%;
@@ -92,20 +155,13 @@
         .slide-img {
           position: relative;
           width: 100%;
-          height: 50vw;
-          margin: 1rem 20rem;
-
-          @media (min-width: 768px) {
-            margin: 1rem 5rem;
-          }
+          height: 50rem;
 
           img {
-            position: absolute;
-            top: 0;
-            left: 0;
+            display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
           }
         }
 
@@ -115,6 +171,8 @@
           text-align: center;
 
           h3 {
+            max-width: 25rem;
+            margin: 1rem auto;
             font-weight: 600;
           }
         }

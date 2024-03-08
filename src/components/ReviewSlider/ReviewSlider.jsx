@@ -11,23 +11,23 @@ const settings = {
   draggable: true,
   infinite: true,
   speed: 500,
-  autoplay: true,
+  autoplay: false,
   autoplaySpeed: 15000,
-  centerPadding: "200px",
+  centerPadding: "175px",
   centerMode: true,
-  arrows: false,
-  dots: true,
+  arrows: true,
+  dots: false,
   responsive: [
     {
       breakpoint: 1025,
       settings: {
-        centerPadding: "0px",
+        centerPadding: "100px",
       },
     },
     {
       breakpoint: 768,
       settings: {
-        centerPadding: "0px",
+        centerPadding: "150px",
         slidesToShow: 1,
         slidesToScroll: 1,
       },
@@ -62,7 +62,6 @@ const ReviewSlider = (props) => {
             );
           })}
         </Slider>
-        {/* {typeof Slider === "function" ? () : null} */}
       </div>
     </div>
   );
