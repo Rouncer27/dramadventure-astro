@@ -64,29 +64,42 @@
 
       p {
         @extend .p-three;
-        display: inline-block;
         margin: 0;
-        padding: 0.1rem 1rem;
-        border-radius: 1rem;
-        color: $whiteColor;
+        margin-bottom: 0.5rem;
+        padding: 0;
+
+        a {
+          @extend .p-three;
+          display: inline-block;
+          margin: 0;
+          padding: 0.1rem 1rem;
+          border-radius: 1rem;
+          color: $whiteColor;
+        }
       }
     }
 
     &-origins {
       p {
-        background-color: $shadowColor;
+        a {
+          background-color: $shadowColor;
+        }
       }
     }
 
     &-regions {
       p {
-        background-color: $accentColor;
+        a {
+          background-color: $accentColor;
+        }
       }
     }
 
     &-types {
       p {
-        background-color: $secondaryColor;
+        a {
+          background-color: $secondaryColor;
+        }
       }
     }
   }

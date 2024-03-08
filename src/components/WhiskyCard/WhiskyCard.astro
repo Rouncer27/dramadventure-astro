@@ -30,17 +30,31 @@ const { page, baseSlug } = Astro.props;
             <div class="whisky-tags">
               <div class="whisky-origins">
                 {pageItem.whiskeyOrigins.nodes.map((origin) => {
-                  return <p>{origin.name}</p>;
+                  return (
+                    <p>
+                      <a href={`/whiskies/origins/${origin.slug}`}>
+                        {origin.name}
+                      </a>
+                    </p>
+                  );
                 })}
               </div>
               <div class="whisky-regions">
                 {pageItem.whiskeyRegions.nodes.map((region) => {
-                  return <p>{region.name}</p>;
+                  return (
+                    <p>
+                      <a href={`/`}>{region.name}</a>
+                    </p>
+                  );
                 })}
               </div>
               <div class="whisky-types">
                 {pageItem.whiskyTypes.nodes.map((type) => {
-                  return <p>{type.name}</p>;
+                  return (
+                    <p>
+                      <a href={`/`}>{type.name}</a>
+                    </p>
+                  );
                 })}
               </div>
             </div>
