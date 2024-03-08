@@ -28,20 +28,20 @@ const { data } = Astro.props;
   const tigger = document.querySelector(".herov3");
   const quote = document.querySelector(".herov3-content-title h1");
 
-  console.log("HELLO HEROV2 THERE!");
-
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: tigger,
-        markers: false,
-        start: "top 40%",
-        scrub: false,
-      },
-    })
-    .fromTo(
-      quote,
-      { autoAlpha: 0, x: 100 },
-      { autoAlpha: 1, ease: "power2.out", duration: 1.5, x: 0 },
-    );
+  if (tigger && quote) {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: tigger,
+          markers: false,
+          start: "top 40%",
+          scrub: false,
+        },
+      })
+      .fromTo(
+        quote,
+        { autoAlpha: 0, x: 100 },
+        { autoAlpha: 1, ease: "power2.out", duration: 1.5, x: 0 },
+      );
+  }
 </script>
