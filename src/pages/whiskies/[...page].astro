@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeroWhiskies from "../../components/HeroWhiskies/HeroWhiskies.astro";
-import WhiskyCard from "../../components/WhiskyCard/WhiskyCard.astro";
+import WhiskiesWrapper from "../../components/WhiskyCard/WhiskiesWrapper.astro";
 import Pagination from "../../components/Pagination/Pagination.astro";
 
 export async function getStaticPaths({ paginate }) {
@@ -82,11 +82,15 @@ const {
   },
 } = await response.json();
 
+const {
+  page: { data: whiskies },
+} = Astro.props;
+
 const { page } = Astro.props;
 ---
 
 <Layout>
   <HeroWhiskies data={whiskiesPage} />
-  <WhiskyCard page={page} baseSlug="/whiskies" />
+  <WhiskiesWrapper whiskies={whiskies} baseSlug="/whiskies" />
   <Pagination page={page} />
 </Layout>

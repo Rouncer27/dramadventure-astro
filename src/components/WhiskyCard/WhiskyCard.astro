@@ -1,66 +1,59 @@
 ---
 import "./whiskyCard.scss";
-import Wrapper from "../shared/Wrapper.astro";
 import Headline from "../shared/Headline.astro";
 import { Image } from "astro:assets";
 
-const { page, baseSlug } = Astro.props;
+const { whisky } = Astro.props;
+const baseSlug = Astro.props.baseSlug;
 ---
 
-<div class="whiskies">
-  <Wrapper>
-    {
-      page.data.map((pageItem) => {
-        console.log("pageItem: ", pageItem.whiskeyRegions.nodes);
-        return (
-          <div class="whisky">
-            <div class="whisky-image">
-              <Image
-                src={pageItem.whiskyContent.featuredImage.sourceUrl}
-                alt={pageItem.whiskyContent.featuredImage.altText}
-                width="100"
-                height="100"
-              />
-            </div>
-            <div class="whisky-content">
-              <Headline tag="h3" hlstyle="five" classes="whisky-content-title">
-                <a href={`${baseSlug}/${pageItem.slug}`}>{pageItem.title}</a>
-              </Headline>
-            </div>
-            <div class="whisky-tags">
-              <div class="whisky-origins">
-                {pageItem.whiskeyOrigins.nodes.map((origin) => {
-                  return (
-                    <p>
-                      <a href={`/whiskies/origins/${origin.slug}`}>
-                        {origin.name}
-                      </a>
-                    </p>
-                  );
-                })}
-              </div>
-              <div class="whisky-regions">
-                {pageItem.whiskeyRegions.nodes.map((region) => {
-                  return (
-                    <p>
-                      <a href={`/`}>{region.name}</a>
-                    </p>
-                  );
-                })}
-              </div>
-              <div class="whisky-types">
-                {pageItem.whiskyTypes.nodes.map((type) => {
-                  return (
-                    <p>
-                      <a href={`/`}>{type.name}</a>
-                    </p>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        );
-      })
-    }
-  </Wrapper>
+<div class="whisky">
+  <div class="whisky-image">
+    <Image
+      src={whisky.whiskyContent.featuredImage.sourceUrl}
+      alt={whisky.whiskyContent.featuredImage.altText}
+      width="100"
+      height="100"
+    />
+  </div>
+  <div class="whisky-content">
+    <Headline tag="h3" hlstyle="five" classes="whisky-content-title">
+      <a href={`${baseSlug}/${whisky.slug}`}>{whisky.title}</a>
+    </Headline>
+  </div>
+  <div class="whisky-tags">
+    <div class="whisky-origins">
+      {
+        whisky.whiskeyOrigins.nodes.map((origin) => {
+          return (
+            <p>
+              <a href={`/whiskies/origins/${origin.slug}`}>{origin.name}</a>
+            </p>
+          );
+        })
+      }
+    </div>
+    <div class="whisky-regions">
+      {
+        whisky.whiskeyRegions.nodes.map((region) => {
+          return (
+            <p>
+              <a href={`/`}>{region.name}</a>
+            </p>
+          );
+        })
+      }
+    </div>
+    <div class="whisky-types">
+      {
+        whisky.whiskyTypes.nodes.map((type) => {
+          return (
+            <p>
+              <a href={`/`}>{type.name}</a>
+            </p>
+          );
+        })
+      }
+    </div>
+  </div>
 </div>

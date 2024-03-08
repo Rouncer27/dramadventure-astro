@@ -1,5 +1,8 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import WhiskyCard from "../../../components/WhiskyCard/WhiskyCard.astro";
+import Wrapper from "../../../components/shared/Wrapper.astro";
+import WhiskiesWrapper from "../../../components/WhiskyCard/WhiskiesWrapper.astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -55,6 +58,31 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
             nodes {
               title
               slug
+              uri
+              whiskyContent {
+                featuredImage {
+                  altText
+                  sourceUrl
+                }
+              }
+              whiskeyOrigins {
+                nodes {
+                  slug
+                  name
+                }
+              }
+              whiskeyRegions {
+                nodes {
+                  slug
+                  name
+                }
+              }
+              whiskyTypes {
+                nodes {
+                  slug
+                  name
+                }
+              }
             }
           }
         }
@@ -69,33 +97,20 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const { data } = await response.json();
-console.log("data", data.nodeByUri.whiskies);
 const {
   whiskies: { nodes: whiskies },
 } = data.nodeByUri;
-
-console.log("whiskies", whiskies);
 ---
 
 <Layout>
   <div>
     <h1>Whisky Origins - {Astro.props.name}</h1>
-    <div>
-      {
-        whiskies.map((whisky) => {
-          return (
-            <p>
-              <a href={`/whiskies/${whisky.slug}`}>{whisky.title}</a>
-            </p>
-          );
-        })
-      }
-    </div>
+    <WhiskiesWrapper whiskies={whiskies} baseSlug="/whiskies" />
   </div>
 </Layout>
 
 <style>
   div {
-    padding-top: 30rem;
+    padding-top: 20rem;
   }
 </style>
