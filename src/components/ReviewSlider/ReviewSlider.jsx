@@ -32,6 +32,14 @@ const settings = {
         slidesToScroll: 1,
       },
     },
+    {
+      breakpoint: 500,
+      settings: {
+        centerPadding: "70px",
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
   ],
 };
 
