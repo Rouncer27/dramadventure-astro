@@ -12,11 +12,21 @@
   }
 
   &-content {
-    width: calc(50%);
-    max-width: 58.5rem;
+    width: calc(100%);
     margin-left: auto;
-    margin-right: 0;
+    margin-right: auto;
+    margin-bottom: 5rem;
     padding: 2rem 4rem;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+      max-width: 58.5rem;
+      margin-right: 0;
+      margin-bottom: 0;
+      text-align: left;
+    }
+
     p {
       @extend .hl-two;
       margin-bottom: 0;
@@ -25,23 +35,38 @@
 
   &-image {
     position: relative;
-    width: calc(50%);
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+    }
 
     &-wrap {
       position: relative;
       width: 100%;
       margin-left: auto;
       margin-right: 0;
-      max-width: 46.6rem;
+
+      @media (min-width: 768px) {
+        max-width: 46.6rem;
+      }
     }
 
     &-icon {
       position: absolute;
       top: 50%;
-      left: -50%;
+      left: 50%;
       width: 100%;
-      max-width: 30rem;
-      transform: translate(0%, -50%);
+      max-width: 20rem;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+
+      @media (min-width: 768px) {
+        top: 50%;
+        left: -50%;
+        max-width: 30rem;
+        transform: translate(0%, -50%);
+      }
     }
   }
 }

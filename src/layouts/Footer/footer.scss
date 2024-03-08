@@ -25,6 +25,14 @@
       justify-content: space-between;
 
       li {
+        width: 100%;
+        text-align: center;
+
+        @media (min-width: 768px) {
+          width: auto;
+          text-align: left;
+        }
+
         a {
           font-weight: 600;
           text-transform: uppercase;

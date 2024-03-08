@@ -6,8 +6,14 @@
   background-color: $creamColor;
 
   &-logo {
-    width: calc(25% - 1rem);
+    width: calc(100% - 1rem);
     margin-right: 1rem;
+    margin-bottom: 2.5rem;
+
+    @media (min-width: 768px) {
+      width: calc(25% - 1rem);
+      margin-bottom: 0;
+    }
 
     &-wrap {
       max-width: 13.75rem;
@@ -16,8 +22,12 @@
   }
 
   &-content {
-    width: calc(75% - 1rem);
+    width: calc(100% - 1rem);
     margin-left: 1rem;
+
+    @media (min-width: 768px) {
+      width: calc(75% - 1rem);
+    }
     p {
       @extend .p-one;
     }

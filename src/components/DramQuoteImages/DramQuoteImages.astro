@@ -37,20 +37,21 @@ const { data } = Astro.props;
   const tigger = document.querySelector(".dram-quote-images");
   const quote = document.querySelector(".dram-quote-images-content p.hl-two");
 
-  console.log("HELLO DRAMQUOTE THERE!");
+  if (tigger && quote) {
+    gsap
 
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: tigger,
-        markers: false,
-        start: "top 40%",
-        scrub: false,
-      },
-    })
-    .fromTo(
-      quote,
-      { autoAlpha: 0, x: 100 },
-      { autoAlpha: 1, ease: "power2.out", duration: 1.5, x: 0 },
-    );
+      .timeline({
+        scrollTrigger: {
+          trigger: tigger,
+          markers: false,
+          start: "top 40%",
+          scrub: false,
+        },
+      })
+      .fromTo(
+        quote,
+        { autoAlpha: 0, x: 100 },
+        { autoAlpha: 1, ease: "power2.out", duration: 1.5, x: 0 },
+      );
+  }
 </script>
