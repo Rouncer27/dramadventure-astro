@@ -1,18 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WhiskyCardReact from "./WhiskyCardReact.jsx";
 
 const WhiskiesWrapperReact = (props) => {
   const whiskies = props.whiskies ? props.whiskies : [];
+
+  const DISPLAY_NUMBER = 4;
+  let postCount = 0;
+
   const [pageData, setPageDate] = useState({
     allWhiskies: whiskies,
+    current: 0,
+    display: [],
+    loading: false,
+    max: 0,
+    isMore: false,
   });
 
-  console.log("pageData: ", pageData);
+  useEffect(() => {
+    setPageDate((prevState) => {
+      return {
+        ...prevState,
+        max: whiskies.length,
+        current: DISPLAY_NUMBER,
+        display: whiskies.slice(0, DISPLAY_NUMBER),
+        isMore: whiskies?.length > DISPLAY_NUMBER,
+      };
+    });
+  }, []);
+
+  const getMore = () => {
+    setPageDate((prevState) => {
+      return {
+        ...prevState,
+        current: prevState.current + DISPLAY_NUMBER,
+        display: prevState.allWhiskies.slice(
+          0,
+          prevState.current + DISPLAY_NUMBER,
+        ),
+        isMore: prevState.max > prevState.current + DISPLAY_NUMBER,
+        loading: false,
+      };
+    });
+  };
+
+  const loadMoreHandler = () => {
+    setPageDate((prevState) => {
+      return {
+        ...prevState,
+        loading: true,
+      };
+    });
+
+    setTimeout(() => {
+      getMore();
+    }, 2000);
+  };
 
   return (
     <div className="whiskies">
       <div className="wrap-med">
-        {props.whiskies?.map((whisky, index) => {
+        {pageData?.display?.map((whisky, index) => {
           return (
             <WhiskyCardReact
               key={index}
@@ -21,6 +68,15 @@ const WhiskiesWrapperReact = (props) => {
             />
           );
         })}
+      </div>
+      <div>
+        <button
+          onClick={() => loadMoreHandler()}
+          type="button"
+          disabled={!pageData.isMore}
+        >
+          Load More
+        </button>
       </div>
     </div>
   );

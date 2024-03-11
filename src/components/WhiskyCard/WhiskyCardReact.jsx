@@ -1,4 +1,3 @@
-import React from "react";
 import "./whiskyCard.scss";
 
 const WhiskyCardReact = ({ whisky, baseSlug }) => {
@@ -13,8 +12,10 @@ const WhiskyCardReact = ({ whisky, baseSlug }) => {
         />
       </div>
       <div className="whisky-content">
-        <h3 className="whisky-content-title">
-          <a href={`${baseSlug}/${whisky.slug}`}>{whisky.title}</a>
+        <h3 className="whisky-content-title hl-five">
+          <a className="hl-five" href={`${baseSlug}/${whisky.slug}`}>
+            {whisky.title}
+          </a>
         </h3>
       </div>
       <div className="whisky-tags">
