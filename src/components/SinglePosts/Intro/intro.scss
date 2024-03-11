@@ -7,11 +7,17 @@
   }
 
   &-featured {
-    width: calc(33.333333%);
+    width: calc(100%);
+    @media (min-width: 768px) {
+      width: calc(33.333333%);
+    }
   }
 
   &-header {
-    width: calc(66.666666%);
+    width: calc(100%);
+    @media (min-width: 768px) {
+      width: calc(66.666666%);
+    }
     padding: 4.3rem;
 
     &-title {

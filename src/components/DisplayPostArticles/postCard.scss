@@ -13,22 +13,39 @@
   }
 
   &-image {
-    width: calc(25%);
+    width: calc(100%);
+    @media (min-width: 768px) {
+      width: calc(25%);
+    }
   }
 
   &-content {
     position: relative;
-    width: calc(75%);
+    width: calc(100%);
     padding: 4.5rem;
 
+    @media (min-width: 768px) {
+      width: calc(75%);
+    }
+
     &-header {
-      max-width: 70%;
+      max-width: 100%;
+
+      @media (min-width: 768px) {
+        width: calc(70%);
+      }
     }
 
     a {
       @extend .p-one;
       text-transform: uppercase;
       cursor: pointer;
+      font-weight: bold;
+      color: $accentColor;
+
+      &:hover {
+        color: $secondaryColor;
+      }
     }
 
     &-date {
