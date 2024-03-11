@@ -94,12 +94,14 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const { data } = await response.json();
-
 const whiskies = data?.whiskies?.nodes ? data?.whiskies?.nodes : [];
 ---
 
 <Layout title={Astro.props["name"]}>
-  <OriginsHero data={Astro.props.data} />
+  <OriginsHero
+    heroSrc={Astro.props.data.whiskyOriginContent.originHero.sourceUrl}
+    heroAlt={Astro.props["name"]}
+  />
   <WhiskiesWrapperReact
     client:only="react"
     whiskies={whiskies}

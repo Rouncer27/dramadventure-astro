@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import "./originFlags.scss";
+const { origins } = Astro.props;
+---
+
+<div class="origin-flags">
+  <div class="wrap-med">
+    {
+      origins.data.map((origin) => {
+        return (
+          <p class="origin-link">
+            <a href={`/whiskies/origins/${origin.slug}`}>
+              <Image
+                src={origin.whiskyOriginContent.originFlag.sourceUrl}
+                width="150"
+                height="150"
+                alt={origin.name}
+              />
+            </a>
+          </p>
+        );
+      })
+    }
+  </div>
+</div>
