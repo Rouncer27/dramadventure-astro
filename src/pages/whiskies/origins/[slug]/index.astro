@@ -1,4 +1,7 @@
 ---
+import WhiskiesWrapperReact from "../../../../components/whiskycard/WhiskiesWrapperReact.jsx";
+import Layout from "../../../../layouts/Layout.astro";
+
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     method: "POST",
@@ -21,10 +24,7 @@ export async function getStaticPaths() {
   });
 
   const { data } = await response.json();
-
   const origins = data?.whiskeyOrigins?.nodes;
-
-  console.log("origins", origins);
 
   return origins.map((origin, index) => {
     return {
@@ -49,10 +49,34 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     query: `
     query whiskies {
       whiskies(first: 999999, where: {taxQuery: {relation: AND, taxArray: {terms: "${Astro.params["slug"]}", taxonomy: WHISKEYORIGIN, operator: IN, field: SLUG}}}) {
-        edges {
-          node {
-            id
+        nodes {
             title
+            slug
+            uri
+            whiskyContent {
+              featuredImage {
+                altText
+                sourceUrl
+              }
+            }
+            whiskeyOrigins {
+              nodes {
+                slug
+                name
+              }
+            }
+            whiskeyRegions {
+              nodes {
+                slug
+                name
+              }
+            }
+            whiskyTypes {
+              nodes {
+                slug
+                name
+              }
+            
           }
         }
       }
@@ -64,19 +88,18 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 
 const { data } = await response.json();
 
-const whiskies = data?.whiskies?.edges ? data?.whiskies?.edges : [];
+const whiskies = data?.whiskies?.nodes ? data?.whiskies?.nodes : [];
 ---
 
-<div>
+<Layout title="Scotland">
   <h1>Hello [slug].astro - {Astro.props["name"]}</h1>
-  <div>
-    {
-      whiskies.map((whisky) => {
-        return <div>{whisky.node.title}</div>;
-      })
-    }
-  </div>
+  <WhiskiesWrapperReact
+    client:only="react"
+    whiskies={whiskies}
+    baseSlug="/whiskies"
+  />
+
   <div>
     <a href="/whiskies/origins/">Back to Origins List</a>
   </div>
-</div>
+</Layout>
