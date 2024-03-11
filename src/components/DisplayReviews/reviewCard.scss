@@ -13,22 +13,41 @@
   }
 
   &-image {
-    width: calc(25%);
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(25%);
+    }
   }
 
   &-content {
     position: relative;
-    width: calc(75%);
-    padding: 4.5rem;
+    width: calc(100%);
+    padding: 1rem 2rem;
+
+    @media (min-width: 768px) {
+      width: calc(75%);
+      padding: 4.5rem;
+    }
 
     &-header {
-      max-width: 70%;
+      max-width: 80%;
+      @media (min-width: 768px) {
+        max-width: 70%;
+      }
     }
 
     a {
       @extend .p-one;
+      display: inline-block;
       text-transform: uppercase;
       cursor: pointer;
+      font-weight: bold;
+      color: $accentColor;
+
+      &:hover {
+        color: $secondaryColor;
+      }
     }
 
     &-date {
