@@ -37,11 +37,14 @@ console.log("page", page);
     <div>
       <h1>All Whisky Origins</h1>
       {
-        page.data.map((origin) => (
-          <p>
-            <a href={`${origin.slug}`}>{origin.name}</a>
-          </p>
-        ))
+        page.data.map((origin) => {
+          console.log("origin", origin);
+          return (
+            <p>
+              <a href={`/whiskies/origins/${origin.slug}`}>{origin.name}</a>
+            </p>
+          );
+        })
       }
     </div>
 
