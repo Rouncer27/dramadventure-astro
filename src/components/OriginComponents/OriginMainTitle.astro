@@ -1,10 +1,11 @@
 ---
 import Wrapper from "../shared/Wrapper.astro";
 import Headline from "../shared/Headline.astro";
+import "./originMainTitle.scss";
 const { title } = Astro.props;
 ---
 
-<div>
+<div class="origin-main-title">
   <Wrapper>
     <div>
       <Headline tag="h3" hlstyle="three">{title}</Headline>

@@ -1,5 +1,3 @@
-import "./whiskyCard.scss";
-
 const WhiskyCardReact = ({ whisky, baseSlug }) => {
   return (
     <div className="whisky">

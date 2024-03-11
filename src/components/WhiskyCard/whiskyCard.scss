@@ -1,5 +1,7 @@
 @use "../../style/abstracts/" as *;
 @use "../../style/global/paragraphs";
+@use "../../style/global/buttons";
+
 .whiskies {
   margin-top: 2rem;
 
@@ -101,6 +103,17 @@
           background-color: $secondaryColor;
         }
       }
+    }
+  }
+
+  .whiskies-load-more {
+    width: 100%;
+    max-width: 50rem;
+    margin: 2rem auto;
+    text-align: center;
+
+    button {
+      @extend .btn;
     }
   }
 }

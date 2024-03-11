@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WhiskyCardReact from "./WhiskyCardReact.jsx";
+import "./whiskyCard.scss";
 
 const WhiskiesWrapperReact = (props) => {
   const whiskies = props.whiskies ? props.whiskies : [];
@@ -69,7 +70,7 @@ const WhiskiesWrapperReact = (props) => {
           );
         })}
       </div>
-      <div>
+      <div className="whiskies-load-more">
         <button
           onClick={() => loadMoreHandler()}
           type="button"

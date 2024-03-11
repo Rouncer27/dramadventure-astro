@@ -2,6 +2,8 @@
 import WhiskiesWrapperReact from "../../../../components/WhiskyCard/WhiskiesWrapperReact";
 import Layout from "../../../../layouts/Layout.astro";
 import OriginsHero from "../../../../components/OriginsHero/OriginsHero.astro";
+import OriginMainTitle from "../../../../components/OriginComponents/OriginMainTitle.astro";
+import OriginBackBtn from "../../../../components/OriginComponents/OriginBackBtn.astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -102,13 +104,11 @@ const whiskies = data?.whiskies?.nodes ? data?.whiskies?.nodes : [];
     heroSrc={Astro.props.data.whiskyOriginContent.originHero.sourceUrl}
     heroAlt={Astro.props["name"]}
   />
+  <OriginMainTitle title={`Whisk(e)y from ${Astro.props["name"]}`} />
   <WhiskiesWrapperReact
     client:only="react"
     whiskies={whiskies}
     baseSlug="/whiskies"
   />
-
-  <div>
-    <a href="/whiskies/origins/">Back to Origins List</a>
-  </div>
+  <OriginBackBtn />
 </Layout>
