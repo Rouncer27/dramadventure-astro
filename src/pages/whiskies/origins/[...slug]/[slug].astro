@@ -1,0 +1,84 @@
+---
+export async function getStaticPaths() {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+      query whiskeyOriginsQuery {
+        whiskeyOrigins(first: 999999) {
+                nodes {
+                    name
+                    slug
+                    uri
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+
+  const origins = data?.whiskeyOrigins?.nodes;
+
+  console.log("origins", origins);
+
+  return origins.map((origin, index) => {
+    return {
+      params: { slug: origin.slug },
+      props: {
+        name: origin.name,
+        uri: origin.uri,
+        slug: origin.slug,
+        next: index === 0 ? null : origins[index - 1].slug,
+        prev: index === origins.length - 1 ? null : origins[index + 1].slug,
+      },
+    };
+  });
+}
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query whiskies {
+      whiskies(first: 999999, where: {taxQuery: {relation: AND, taxArray: {terms: "${Astro.params["slug"]}", taxonomy: WHISKEYORIGIN, operator: IN, field: SLUG}}}) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+        
+    `,
+  }),
+});
+
+const { data } = await response.json();
+
+const whiskies = data?.whiskies?.edges ? data?.whiskies?.edges : [];
+
+console.log("response", data.whiskies.edges);
+---
+
+<div>
+  <h1>Hello [slug].astro - {Astro.props["name"]}</h1>
+  <div>
+    {
+      whiskies.map((whisky) => {
+        return <div>{whisky.node.title}</div>;
+      })
+    }
+  </div>
+  <div>
+    <a href="/whiskies/origins/">Back to Origins List</a>
+  </div>
+</div>
