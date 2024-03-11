@@ -1,6 +1,7 @@
 ---
 import WhiskiesWrapperReact from "../../../../components/WhiskyCard/WhiskiesWrapperReact";
 import Layout from "../../../../layouts/Layout.astro";
+import OriginsHero from "../../../../components/OriginsHero/OriginsHero.astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -16,6 +17,11 @@ export async function getStaticPaths() {
                     name
                     slug
                     uri
+                    whiskyOriginContent {
+                    originHero {
+                      sourceUrl
+                    }
+                  }
                 }
             }
         }
@@ -33,6 +39,7 @@ export async function getStaticPaths() {
         name: origin.name,
         uri: origin.uri,
         slug: origin.slug,
+        data: origin,
         next: index === 0 ? null : origins[index - 1].slug,
         prev: index === origins.length - 1 ? null : origins[index + 1].slug,
       },
@@ -91,8 +98,8 @@ const { data } = await response.json();
 const whiskies = data?.whiskies?.nodes ? data?.whiskies?.nodes : [];
 ---
 
-<Layout title="Scotland">
-  <h1>Hello [slug].astro - {Astro.props["name"]}</h1>
+<Layout title={Astro.props["name"]}>
+  <OriginsHero data={Astro.props.data} />
   <WhiskiesWrapperReact
     client:only="react"
     whiskies={whiskies}

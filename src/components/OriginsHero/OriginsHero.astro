@@ -1,0 +1,18 @@
+---
+import { Image } from "astro:assets";
+import "./originsHero.scss";
+
+console.log(Astro.props);
+---
+
+<div class="origin-hero">
+  <div class="origin-hero-image">
+    <Image
+      src={Astro.props.data.whiskyOriginContent.originHero.sourceUrl}
+      alt="The Repo Room"
+      width={2000}
+      height={2000 / 2}
+      loading="eager"
+    />
+  </div>
+</div>
