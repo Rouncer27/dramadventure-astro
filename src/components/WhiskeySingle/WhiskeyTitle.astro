@@ -1,0 +1,34 @@
+---
+import Headline from "../shared/Headline.astro";
+import Wrapper from "../shared/Wrapper.astro";
+import "./whiskeyTitle.scss";
+
+import chillSrc from "../../assets/icons/BADGES_non-chill filtered.png";
+import colourSrc from "../../assets/icons/BADGES_no colour.png";
+import { Image } from "astro:assets";
+---
+
+<div class="single-whiskey">
+  <Wrapper>
+    <div class="single-whiskey-title">
+      <Headline tag="h1" hlstyle="two">{Astro.props.title}</Headline>
+    </div>
+    <div class="single-whiskey-specs">
+      {
+        Astro.props.specs.nonChillFiltered === "yes" && (
+          <divc class="single-whiskey-specs-item">
+            <Image src={chillSrc} alt={""} />
+          </divc>
+        )
+      }
+
+      {
+        Astro.props.specs.naturalColour === "yes" && (
+          <div class="single-whiskey-specs-item">
+            <Image src={colourSrc} alt={""} />
+          </div>
+        )
+      }
+    </div>
+  </Wrapper>
+</div>

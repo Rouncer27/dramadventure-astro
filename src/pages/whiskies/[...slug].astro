@@ -1,5 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import WhiskeyImage from "../../components/WhiskeySingle/WhiskeyImage.astro";
+import WhiskeyTitle from "../../components/WhiskeySingle/WhiskeyTitle.astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -36,16 +38,67 @@ export async function getStaticPaths() {
     };
   });
 }
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+      query whiskey($id: ID!) {
+        whiskey(id: $id, idType: SLUG) {
+            title
+            slug
+            uri
+            whiskyContent {
+              specs {
+                avb46OrAbove
+                naturalColour
+                nonChillFiltered
+              }
+              featuredImage {
+                altText
+                sourceUrl
+              }
+            }
+            whiskeyOrigins {
+              nodes {
+                slug
+                name
+              }
+            }
+            whiskeyRegions {
+              nodes {
+                slug
+                name
+              }
+            }
+            whiskyTypes {
+              nodes {
+                slug
+                name
+            }
+          }
+        }
+      }
+    `,
+    variables: {
+      id: Astro.params["slug"],
+    },
+  }),
+});
+
+const { data } = await response.json();
 ---
 
 <Layout>
-  <div>
-    <h1>Single Whisky</h1>
-  </div>
+  <WhiskeyImage
+    imgSrc={data.whiskey.whiskyContent.featuredImage.sourceUrl}
+    imgAlt={data.whiskey.whiskyContent.featuredImage.altText}
+  />
+  <WhiskeyTitle
+    title={data.whiskey.title}
+    specs={data.whiskey.whiskyContent.specs}
+  />
 </Layout>
-
-<style>
-  div {
-    padding-top: 30rem;
-  }
-</style>
