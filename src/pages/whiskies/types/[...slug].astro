@@ -1,0 +1,37 @@
+---
+export async function getStaticPaths() {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query whiskyTypesQuery {
+            whiskyTypes(first: 999999) {
+                nodes {
+                    name
+                    slug
+                    uri
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  const whiskyTypes = data.whiskyTypes.nodes;
+  return whiskyTypes.map((type) => {
+    return {
+      params: { slug: `${type.slug}` },
+      props: { type },
+    };
+  });
+}
+---
+
+<div>
+  <h1>{Astro.props.type.name}</h1>
+  <a href="/whiskies/types">Back to Main Types Page</a>
+</div>

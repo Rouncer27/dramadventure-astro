@@ -10,8 +10,8 @@ export async function getStaticPaths({ paginate }) {
     },
     body: JSON.stringify({
       query: `
-        query whiskeyRegionsQuery {
-            whiskeyRegions(first: 999999) {
+        query whiskeyTypesQuery {
+            whiskyTypes(first: 999999) {
                 nodes {
                     name
                     slug
@@ -24,8 +24,8 @@ export async function getStaticPaths({ paginate }) {
   });
 
   const { data } = await response.json();
-  const allRegions = data.whiskeyRegions.nodes;
-  return paginate(allRegions, { pageSize: 4 });
+  const whiskeyTypes = data.whiskyTypes.nodes;
+  return paginate(whiskeyTypes, { pageSize: 4 });
 }
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -58,17 +58,17 @@ const {
 const { page } = Astro.props;
 
 console.log("page: ", page);
-const whiskeyRegions = page["data"];
-console.log("whiskeyRegions", whiskeyRegions);
+const whiskeyTypes = page["data"];
+console.log("allTypes", whiskeyTypes);
 ---
 
 <Layout>
   <div>
-    <h1>Expolore by whisk(e)y Regions</h1>
+    <h1>Expolore by whisk(e)y Types</h1>
     {
-      whiskeyRegions.map((region) => (
+      whiskeyTypes.map((type) => (
         <p>
-          <a href={`/whiskies/regions/${region.slug}`}>{region.name}</a>
+          <a href={`/whiskies/types/${type.slug}`}>{type.name}</a>
         </p>
       ))
     }

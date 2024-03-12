@@ -38,7 +38,7 @@ const baseSlug = Astro.props.baseSlug;
         whisky.whiskeyRegions.nodes.map((region) => {
           return (
             <p>
-              <a href={`/`}>{region.name}</a>
+              <a href={`/whiskies/regions/${region.slug}`}>{region.name}</a>
             </p>
           );
         })
@@ -49,7 +49,7 @@ const baseSlug = Astro.props.baseSlug;
         whisky.whiskyTypes.nodes.map((type) => {
           return (
             <p>
-              <a href={`/`}>{type.name}</a>
+              <a href={`/whiskies/types/${type.slug}`}>{type.name}</a>
             </p>
           );
         })
