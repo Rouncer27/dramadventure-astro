@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+import "./regionsHero.scss";
+---
+
+<div class="regions-hero">
+  <div class="regions-hero-image">
+    <Image
+      src={Astro.props.heroSrc}
+      alt={Astro.props.heroAlt}
+      width={2000}
+      height={2000 / 2}
+      loading="eager"
+    />
+  </div>
+</div>

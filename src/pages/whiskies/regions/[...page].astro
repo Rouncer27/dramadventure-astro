@@ -1,5 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import RegionsHero from "../../../components/RegionsComponents/RegionsHero.astro";
 import Pagination from "../../../components/Pagination/Pagination.astro";
 
 export async function getStaticPaths({ paginate }) {
@@ -38,8 +39,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
       query whiskiesPageQuery {
         acfOptionsWhiskiesPage {
           whiskiesPage {
-            whiskyOriginTitle
-            whiskyOriginHeroImage {
+            whiskyRegionsTitle
+            whiskyRegionsHeroImage {
               altText
               sourceUrl
             }
@@ -63,6 +64,10 @@ console.log("whiskeyRegions", whiskeyRegions);
 ---
 
 <Layout>
+  <RegionsHero
+    heroSrc={whiskiesPage.whiskyRegionsHeroImage.sourceUrl}
+    heroAlt={whiskiesPage.whiskyRegionsHeroImage.altText}
+  />
   <div>
     <h1>Expolore by whisk(e)y Regions</h1>
     {

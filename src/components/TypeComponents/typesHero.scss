@@ -1,0 +1,28 @@
+.types-hero {
+  position: relative;
+  width: 100%;
+  height: 50rem;
+
+  @media (min-width: 768px) {
+    height: 60rem;
+  }
+
+  @media (min-width: 1025px) {
+    height: 70rem;
+  }
+
+  &-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
