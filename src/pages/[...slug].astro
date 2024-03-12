@@ -364,14 +364,16 @@ const { data } = await response.json();
 const blocks = data.nodeByUri.pageComponents.components;
 const reviews = data.spritsReviews.nodes;
 const posts = data.posts.nodes;
+const title = data?.nodeByUri?.seo?.title ? data?.nodeByUri?.seo?.title : null;
+const description = data?.nodeByUri?.seo?.metaDesc
+  ? data?.nodeByUri?.seo?.metaDesc
+  : null;
+const metaImg = data?.nodeByUri?.featuredImage?.node?.sourceUrl
+  ? data?.nodeByUri?.featuredImage?.node?.sourceUrl
+  : null;
 ---
 
-<Layout
-  seoData={data.nodeByUri.seo}
-  seoImage={data?.nodeByUri?.featuredImage?.node?.sourceUrl
-    ? data?.nodeByUri?.featuredImage?.node?.sourceUrl
-    : null}
->
+<Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
   <main>
     <BlockRenderer blocks={blocks} reviews={reviews} posts={posts} />
   </main>

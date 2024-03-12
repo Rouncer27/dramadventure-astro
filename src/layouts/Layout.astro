@@ -3,11 +3,15 @@ import Header from "./Header.astro";
 import Footer from "./Footer/Footer.astro";
 import "../style/style.scss";
 import { baseData } from "../data/siteData";
-const { seoImage = null, seoData } = Astro.props;
+const {
+  metaImg = null,
+  metaTitle = null,
+  metaDescription = null,
+} = Astro.props;
 
-const title = seoData ? seoData.title : baseData.title;
-const description = seoData ? seoData.metaDesc : baseData.description;
-const imgSrc = seoImage ? seoImage : baseData.siteImg;
+const title = metaTitle ? metaTitle : baseData.title;
+const description = metaDescription ? metaDescription : baseData.description;
+const imgSrc = metaImg ? metaImg : baseData.siteImg;
 const baseUrl = baseData.url;
 ---
 
