@@ -2,7 +2,13 @@
 import Header from "./Header.astro";
 import Footer from "./Footer/Footer.astro";
 import "../style/style.scss";
+import { baseData } from "../data/siteData";
 const { seoImage = null, seoData } = Astro.props;
+
+const title = seoData ? seoData.title : baseData.title;
+const description = seoData ? seoData.metaDesc : baseData.description;
+const imgSrc = seoImage ? seoImage : baseData.siteImg;
+const baseUrl = baseData.url;
 ---
 
 <!doctype html>
@@ -13,26 +19,29 @@ const { seoImage = null, seoData } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
+
     <!-- SEO -->
-    <title>{seoData?.title}</title>
-    <!-- <meta name="description" content={seoData.metaDesc} />
-    <meta name="image" content={seoImage} /> -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="image" content={imgSrc} />
+    <link rel="canonical" href={baseUrl} />
+    <!-- <link rel="sitemap" href="/sitemap-index.xml" /> -->
 
     <!-- OpenGraph Tags -->
-    <!-- <meta property="og:type" content="website" />
-    <meta property="og:title" content={seoData?.title} />
-    <meta property="og:description" content={seoData.metaDesc} />
-    <meta property="og:image" content={seoImage} />
-    <meta property="og:image:alt" content={seoData.metaDesc} />
-    <meta property="og:site_name" content={seoData.title} />
-    <meta property="og:locale" content={`en_US`} /> -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imgSrc} />
+    <meta property="og:image:alt" content={description} />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:locale" content={`en_US`} />
 
     <!-- Twitter Card -->
-    <!-- <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content={"Trevor & Suzy Rounce"} />
-    <meta name="twitter:title" content={seoData.title} />
-    <meta name="twitter:description" content={seoData.metaDesc} />
-    <meta name="twitter:image" content={seoImage} /> -->
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imgSrc} />
   </head>
   <body>
     <div class="main-wrapper">
