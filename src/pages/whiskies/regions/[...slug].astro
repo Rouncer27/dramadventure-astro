@@ -1,4 +1,7 @@
 ---
+import WhiskiesWrapperReact from "../../../components/WhiskyCard/WhiskiesWrapperReact";
+import Layout from "../../../layouts/Layout.astro";
+
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     method: "POST",
@@ -29,9 +32,80 @@ export async function getStaticPaths() {
     };
   });
 }
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query whiskies {
+      whiskies(first: 999999, where: {taxQuery: {relation: AND, taxArray: {terms: "${Astro.params["slug"]}", taxonomy: WHISKEYREGION, operator: IN, field: SLUG}}}) {
+        nodes {
+            title
+            slug
+            uri
+            whiskyContent {
+              featuredImage {
+                altText
+                sourceUrl
+              }
+            }
+            whiskeyOrigins {
+              nodes {
+                slug
+                name
+              }
+            }
+            whiskeyRegions {
+              nodes {
+                slug
+                name
+              }
+            }
+            whiskyTypes {
+              nodes {
+                slug
+                name
+              }
+            
+          }
+        }
+      }
+    }
+        
+    `,
+  }),
+});
+const { data } = await response.json();
+const whiskies = data?.whiskies?.nodes ? data?.whiskies?.nodes : [];
 ---
 
-<div>
-  <h1>{Astro.props.region.name}</h1>
+<Layout>
+  <div class="temp-top">
+    <h1>{Astro.props.region.name}</h1>
+  </div>
+  <div>
+    {
+      whiskies.length > 0 ? (
+        <WhiskiesWrapperReact
+          client:only="react"
+          whiskies={whiskies}
+          baseSlug="/whiskies"
+        />
+      ) : (
+        <div class="not-found">
+          <p>Sorry there are no whisk(e)ys under {Astro.props.region.name}.</p>
+        </div>
+      )
+    }
+  </div>
   <a href="/whiskies/regions">Back to Main Regions Page</a>
-</div>
+</Layout>
+
+<style lang="scss">
+  .temp-top {
+    padding-top: 25rem;
+  }
+</style>

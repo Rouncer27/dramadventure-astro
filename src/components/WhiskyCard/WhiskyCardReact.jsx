@@ -30,7 +30,7 @@ const WhiskyCardReact = ({ whisky, baseSlug }) => {
           {whisky.whiskeyRegions.nodes.map((region, index) => {
             return (
               <p key={index}>
-                <a href={`/`}>{region.name}</a>
+                <a href={`/whiskies/regions/${region.slug}`}>{region.name}</a>
               </p>
             );
           })}
@@ -39,7 +39,7 @@ const WhiskyCardReact = ({ whisky, baseSlug }) => {
           {whisky.whiskyTypes.nodes.map((type, index) => {
             return (
               <p key={index}>
-                <a href={`/`}>{type.name}</a>
+                <a href={`/whiskies/types/${type.slug}`}>{type.name}</a>
               </p>
             );
           })}
