@@ -1,0 +1,76 @@
+---
+/* This is the template for the route /whiskies/origins/ to show all the possilbe Origins. */
+import Layout from "../../../layouts/Layout.astro";
+
+export async function getStaticPaths({ paginate }) {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query whiskeyRegionsQuery {
+            whiskeyRegions(first: 999999) {
+                nodes {
+                    name
+                    slug
+                    uri
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  const allRegions = data.whiskeyRegions.nodes;
+  return paginate(allRegions, { pageSize: 5 });
+}
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+      query whiskiesPageQuery {
+        acfOptionsWhiskiesPage {
+          whiskiesPage {
+            whiskyOriginTitle
+            whiskyOriginHeroImage {
+              altText
+              sourceUrl
+            }
+          }
+        }
+      }
+    `,
+  }),
+});
+
+const {
+  data: {
+    acfOptionsWhiskiesPage: { whiskiesPage },
+  },
+} = await response.json();
+const { page } = Astro.props;
+
+console.log("page: ", page);
+const whiskeyRegions = page["data"];
+console.log("whiskeyRegions", whiskeyRegions);
+---
+
+<Layout>
+  <div>
+    <h1>Expolore by whisk(e)y Regions</h1>
+    {
+      whiskeyRegions.map((region) => (
+        <p>
+          <a href={`/whiskies/regions/${region.slug}`}>{region.name}</a>
+        </p>
+      ))
+    }
+  </div>
+</Layout>

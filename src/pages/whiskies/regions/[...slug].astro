@@ -1,0 +1,37 @@
+---
+export async function getStaticPaths() {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query whiskeyRegionsQuery {
+            whiskeyRegions(first: 999999) {
+                nodes {
+                    name
+                    slug
+                    uri
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  const allRegions = data.whiskeyRegions.nodes;
+  return allRegions.map((region) => {
+    return {
+      params: { slug: `${region.slug}` },
+      props: { region },
+    };
+  });
+}
+---
+
+<div>
+  <h1>{Astro.props.region.name}</h1>
+  <a href="/whiskies/regions">Back to Main Regions Page</a>
+</div>
