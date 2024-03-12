@@ -32,8 +32,8 @@ const baseUrl = baseData.url;
     <!-- <link rel="sitemap" href="/sitemap-index.xml" /> -->
 
     <!-- OpenGraph Tags -->
-    <meta property="og:url" content={baseUrl} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={baseUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={imgSrc} />
@@ -42,11 +42,13 @@ const baseUrl = baseData.url;
     <meta property="og:locale" content={`en_US`} />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content={"Trevor & Suzy Rounce"} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={imgSrc} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={baseUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={imgSrc} />
+    <meta property="twitter:image:alt" content={description} />
+    <meta property="twitter:creator" content={"Trevor & Suzy Rounce"} />
   </head>
   <body>
     <div class="main-wrapper">
