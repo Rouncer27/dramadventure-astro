@@ -12,7 +12,7 @@ const {
 const title = metaTitle ? metaTitle : baseData.title;
 const description = metaDescription ? metaDescription : baseData.description;
 const imgSrc = metaImg ? metaImg : baseData.siteImg;
-const baseUrl = baseData.url;
+const baseUrl = Astro.url ? Astro.url : baseData.url;
 ---
 
 <!doctype html>
