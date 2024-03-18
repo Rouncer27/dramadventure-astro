@@ -52,6 +52,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
             slug
             uri
             whiskyContent {
+              description
               specs {
                 avb46OrAbove
                 naturalColour
@@ -93,12 +94,13 @@ const { data } = await response.json();
 ---
 
 <Layout>
-  <WhiskeyImage
-    imgSrc={data.whiskey.whiskyContent.featuredImage.sourceUrl}
-    imgAlt={data.whiskey.whiskyContent.featuredImage.altText}
-  />
   <WhiskeyTitle
     title={data.whiskey.title}
     specs={data.whiskey.whiskyContent.specs}
+  />
+  <WhiskeyImage
+    imgSrc={data.whiskey.whiskyContent.featuredImage.sourceUrl}
+    imgAlt={data.whiskey.whiskyContent.featuredImage.altText}
+    description={data.whiskey.whiskyContent.description}
   />
 </Layout>

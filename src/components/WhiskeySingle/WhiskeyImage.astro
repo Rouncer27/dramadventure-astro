@@ -9,11 +9,17 @@ console.log("Astro", Astro.props);
 <div class="single-whiskey-image">
   <Wrapper>
     <div class="single-whiskey-image-wrapper">
-      <Image
-        src={Astro.props.imgSrc}
-        alt={Astro.props.imgAlt}
-        width="750"
-        height="1000"
+      <div class="single-whiskey-image-container">
+        <Image
+          src={Astro.props.imgSrc}
+          alt={Astro.props.imgAlt}
+          width="750"
+          height="1000"
+        />
+      </div>
+      <div
+        class="single-whiskey-image-description"
+        set:html={Astro.props.description}
       />
     </div>
   </Wrapper>
