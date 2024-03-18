@@ -38,16 +38,30 @@ const { data } = Astro.props;
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
+      align-items: center;
+
+      @media (min-width: 768px) {
+        align-items: initial;
+      }
     }
 
     &-one {
-      width: 44rem;
+      width: 50%;
+
+      @media (min-width: 768px) {
+        width: 25%;
+      }
     }
 
     &-two {
-      width: 73rem;
-      margin-top: 5rem;
-      margin-left: 5rem;
+      width: 50%;
+
+      @media (min-width: 768px) {
+        width: calc(75% - 15rem);
+        margin-top: 5rem;
+        margin-right: 10rem;
+        margin-left: 5rem;
+      }
     }
   }
 </style>

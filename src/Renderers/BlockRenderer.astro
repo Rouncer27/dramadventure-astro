@@ -64,7 +64,7 @@ const { blocks, reviews, posts } = Astro.props;
         return <ContentImageFullWidth data={block} />;
 
       case "Page_Pagecomponents_Components_SliderThreeImages":
-        return <SliderThreeImages client:load data={block} />;
+        return <SliderThreeImages client:only="react" data={block} />;
 
       case "Page_Pagecomponents_Components_BigFontContent":
         return <BigFontContent data={block} />;
