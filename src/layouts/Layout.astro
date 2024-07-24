@@ -106,18 +106,20 @@ const baseUrl = Astro.url ? Astro.url : baseData.url;
     </script>
 
     <!-- Google Tag Manager -->
-    <script is:inline>
-      (function (w, d, s, l, i) {
-        console.log("GTM");
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "G-ZKP3DYEH24");
+
+    <script
+      type="text/partytown"
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GNTQRJ1DGM"></script>
+    <script type="text/partytown" is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-ZKP3DYEH24");
     </script>
     <!-- End Google Tag Manager -->
   </head>
